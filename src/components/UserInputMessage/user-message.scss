@@ -1,0 +1,32 @@
+
+.message-block {
+  .user-input-message:first-of-type {
+    margin-top: 10px;
+  }
+}
+
+.user-message-block {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user-input-message {
+  background:#2e7d32;
+  margin-top: 15px;
+  margin-bottom: 15px;
+	transition-timing-function: ease-out;
+  transition: 0.25s;
+  transform: translateY(0);
+  margin-left: 0;
+  color:white; 
+  align-self: flex-end;
+  padding: 10px 0 !important;
+  border-top-right-radius: 0 !important;
+  min-width: 100px;
+  // background: #FFF;
+  // max-width: 475px !important;
+  // min-width: 100px;
+  display: flex;
+  justify-content: center;
+
+}

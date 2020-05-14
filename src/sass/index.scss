@@ -1,0 +1,39 @@
+@import './theme.scss';
+
+html, body {
+  // width: min-content;
+  font-size: 16px;
+}
+
+:root {
+  --border-color: rgba(255, 255, 255, 0.3);
+  --text-color: rgba(255, 255, 255, 0.3);
+}
+
+.md-menu--select-field {
+  border: 1px solid var(--border-color);
+}
+
+.page-content-container {
+  min-height: 100vh;
+  min-width: 100vw
+}
+
+.fullHeight-center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}

@@ -1,0 +1,42 @@
+.datatable-wrapper {
+  width: auto;
+  overflow: auto;
+  border: 1px solid var(--border-color);
+  // box-shadow: 0px 1px 3px 0px #86c232;
+
+  & > div > div:first-child {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .MuiPaper-root {
+    background: rgba(0,0,0,0.001);
+  }
+
+  td.MuiTableCell-root {
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color) !important;
+  }
+
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 300px;
+  }
+  .table-select-filter {
+    .MuiFormControlLabel-label {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: auto;
+      white-space: break-spaces;
+      max-width: 300px;
+    }
+  }
+
+  .MuiTableFooter-root {
+    span {
+      color: var(--text-color);
+    }
+  }
+}

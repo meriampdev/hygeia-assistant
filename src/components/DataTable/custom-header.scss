@@ -1,0 +1,71 @@
+.custom-header {
+  background: transparent;
+
+  th {
+    padding: 10px;
+    border-right: 1px solid rgba(255,255,255,0.3);
+    white-space: nowrap;
+    min-width: 150px;
+    color: #e2e2e2;
+    div.custom-filter {
+      width: 100%;
+
+      button {
+        span.MuiButton-label {
+          display: flex;
+          justify-content: space-between;
+          color: #ebebeb !important;
+        }
+
+        &.is-open {
+          span.MuiButton-endIcon {
+            color: #4394F7;
+          }
+        }
+      }
+
+      &.filter-active {
+        span.MuiButton-endIcon {
+          color: #4394F7;
+        }
+      }
+    }
+
+    &.small-cell-one {
+      min-width: unset !important;
+    }
+
+    &.custom-action-1, &.max-content {
+      min-width: unset !important;
+    }
+  }
+}
+.header-filter {
+  padding: 5px 10px;
+}
+
+.datatable-wrapper {
+  width: fit-content;
+  table.MuiTable-root {
+    width: auto;
+    color: #e2e2e2;
+  }
+  .MuiTable-root td, .MuiTable-root tbody td {
+    width: auto !important;
+  }
+  tbody.MuiTableBody-root {
+    td.MuiTableCell-root {
+      padding: 5px 10px;
+      border-right: 1px solid rgba(255,255,255,0.3);
+
+      div.max-content {
+        width: max-content
+      }
+    }
+  }
+}
+
+.date-filter-wrapper {
+  display: flex;
+  flex-direction: column;
+}

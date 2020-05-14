@@ -1,0 +1,50 @@
+.hygeia-message-block {
+  .hygeia-message {
+    transition-timing-function: ease-out;
+    transition: 0.25s;
+    transform: translateY(0);
+    background:#e2e2e2;
+    color: #2e7d32;
+    // background:#2e7d32;
+    // color:#FFFF;
+    margin-bottom: 7px;
+    border-radius: 7px !important;
+    border-top-left-radius: 0 !important;
+
+    p {
+      color: #2e7d32;
+      max-width: 255px;
+      word-wrap: break-word;
+      margin-bottom: 5px;
+      line-height: 24px;
+      position:relative;
+      padding:10px 5px;
+      margin: 0;
+      
+      &:before, &:after {
+        content:"";
+        position:absolute;
+        bottom:-2px;
+        height:20px;
+      }
+    }
+  }
+
+  .hygeia-buttons {
+
+    div:not(.hygeia-message) {
+      display: flex;
+      // justify-content: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .button {
+      margin-right: 5px;
+      background: #2e7d32 !important;
+      // border: 1px solid #2e7d32;
+      color : #FFF;
+      height: 30px;
+      font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1600 - 300)));
+    }
+  }
+}
