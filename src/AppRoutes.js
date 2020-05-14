@@ -7,6 +7,7 @@ import {
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './pages/Login'
 import LandingPage from './pages/LandingPage'
+import SignUp from './pages/SignUp'
 
 
 export default function AppRoutes() {
@@ -21,6 +22,10 @@ export default function AppRoutes() {
           )} />*/}
           <Route exact path="/login" render={(props) => (
             <Login />
+          )} />
+
+          <Route exact path="/signup" render={(props) => (
+            <SignUp />
           )} />
 
           <Route  path="*" render={(props) => (

@@ -1,0 +1,17 @@
+
+
+.signup-paper {
+  margin: 50px;
+  padding: 20px;
+  background: #FFF;
+
+  @media only screen and (max-width: 760px) {
+    /* For mobile phones: */
+    margin: 15px;
+  }
+
+  .signup-headline {
+    text-align: center;
+  }
+ 
+}

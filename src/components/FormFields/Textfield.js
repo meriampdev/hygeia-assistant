@@ -4,7 +4,8 @@ import FontIcon from 'react-md/lib/FontIcons/FontIcon'
 import isValid from './validationHelper'
 
 export default function Text(props) {
-  const [ value, setValue ] = useState("")
+  let defaultValue = props.defaultProps.type === 'date' ? new Date() : ""
+  const [ value, setValue ] = useState(defaultValue)
   const [ validation, setValidation ] = useState({})
   useEffect(() => {
     if(props.submitAttempt) {

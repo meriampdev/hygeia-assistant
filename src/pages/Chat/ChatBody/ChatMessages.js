@@ -5,10 +5,12 @@ import HygeiaMessageRenderer from './Hygeia'
 import UserForm from './UserForm'
 import _ from 'lodash'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const ChatMessages = React.forwardRef((props, ref) => {
   const next = useSelector(state => state.chat.next)
   const dataForNext = useSelector(state => state.chat.dataForNext)
+  let history = useHistory()
 
   useEffect(() => {
     if(next) {
@@ -42,6 +44,8 @@ const ChatMessages = React.forwardRef((props, ref) => {
     if(messageData.inputKey === 'userRole') {
       if(userAction.value === 'client') {
         props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
+      } else {
+        history.push('/signup')
       }
     } else {
       props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
