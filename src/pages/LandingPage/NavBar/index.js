@@ -1,8 +1,10 @@
 import React from 'react'
 import './navbar.scss'
 import Button from 'react-md/lib/Buttons/Button'
+import { useHistory } from 'react-router-dom'
 
 export default function NavBar(props) {
+  const history = useHistory()
 	return (
     <div className="nav">
       <div className="nav-header">
@@ -21,7 +23,8 @@ export default function NavBar(props) {
       </div>
       
       <div className="nav-links">
-        <Button flat >Sign In</Button>
+        <Button onClick={() => history.push('/login')} flat 
+          style={{border: '1px solid var(--primary-color)'}}>Sign In</Button>
       </div>
     </div>
   )

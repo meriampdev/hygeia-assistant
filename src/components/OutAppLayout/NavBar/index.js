@@ -23,7 +23,12 @@ export default function NavBar(props) {
       </div>
       
       <div className="nav-links">
-        <Button flat >Sign In</Button>
+        {
+          history.location.pathname !== '/login' ? 
+            <Button onClick={() => history.push('/login')} flat 
+              style={{border: '1px solid var(--primary-color)'}}>Sign In</Button>
+          : null
+        }
       </div>
     </div>
   )

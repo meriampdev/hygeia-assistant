@@ -37,9 +37,13 @@
 }
 
 .nav > .nav-links {
-  display: inline;
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
   float: right;
   font-size: 18px;
+  margin-right: 20px;
 }
 
 .nav > .nav-links > a {
