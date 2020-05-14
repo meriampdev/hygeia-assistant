@@ -5,7 +5,7 @@
   width: auto;
   border-radius: 50px;
   padding: 20px;
-  display: table;
+  // display: table;
   margin-right: auto;
   position: relative;
   animation: 2s bulge infinite ease-out;
@@ -53,16 +53,4 @@
   50% {
     transform: scale(1.05);
   }
-}
-
-// vertically center demo 
-html {
-  display: table;
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  display: table-cell;
-  vertical-align: middle;
 }

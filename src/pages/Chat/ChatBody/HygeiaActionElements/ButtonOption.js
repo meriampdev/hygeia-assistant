@@ -1,11 +1,11 @@
 import React from 'react'
 import Button from 'react-md/lib/Buttons/Button'
+import HygeiaMessage from '../../../../components/HygeiaMessage'
 
 export default function ButtonOption(props) {
-  console.log('props', props)
   return (
-    <div className='hygeia-buttons'>
-      <div>
+    <HygeiaMessage>
+      <div className='hygeia-buttons'>
         {
           props.message.inputOptions.map((item, i) => {
             return <Button 
@@ -19,6 +19,6 @@ export default function ButtonOption(props) {
           })
         }
       </div>
-    </div>
+    </HygeiaMessage>
   )
 }

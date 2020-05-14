@@ -1,0 +1,9 @@
+.hygeia-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .md-btn--text {
+    height: 30px;
+    margin-right: 5px;
+  }
+}

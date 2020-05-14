@@ -1,0 +1,3 @@
+export const USER_SEND_ANSER = 'USER_SEND_ANSER'
+export const SET_INPUT_TYPING = 'SET_INPUT_TYPING'
+export const TRIGGER_NEXT = 'TRIGGER_NEXT'

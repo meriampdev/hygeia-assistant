@@ -1,6 +1,5 @@
 @import '~react-md/src/scss/react-md';
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
-@import './phone-emulator.scss';
 
 // $md-primary-color: #86c232;
 // $md-primary-color: #116466;
@@ -14,6 +13,7 @@ $md-slider-warn-md: false;
 
 $text-color: #ebebeb;
 @include react-md-everything;
+
 
 $md-dark-theme-colors: (
   text: #ebebeb,

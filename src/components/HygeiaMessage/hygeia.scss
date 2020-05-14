@@ -1,3 +1,47 @@
+.hygeia-message-group {
+  .tpl-response:not(:nth-last-child(1)) {
+    .bot-caption-response-wrapper {
+      .caption {
+        .avatar {
+          visibility: hidden;
+        }
+        .tpl-text-response-wrapper {
+          .tpl-text-response {
+            border-radius: 5px 20px 20px 5px;
+          }
+          .caption-text {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .tpl-response:first-child {
+    .bot-caption-response-wrapper {
+      .caption {
+        .tpl-text-response-wrapper {
+          .tpl-text-response {
+            border-radius: 20px 20px 20px 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .tpl-response:last-child {
+    .bot-caption-response-wrapper {
+      .caption {
+        .tpl-text-response-wrapper {
+          .tpl-text-response {
+            border-radius: 5px 20px 20px 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
 .hygeia-message-block {
   .hygeia-message {
     transition-timing-function: ease-out;

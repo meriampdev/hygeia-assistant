@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import HygeiaMessage from '../../../components/HygeiaMessage'
 import TypingIndicator from '../../../components/TypingIndicator'
 import Button from 'react-md/lib/Buttons/Button'
+import { useDispatch } from 'react-redux'
+import { setInputTyping } from '../../../redux'
 
 import ButtonOption from './HygeiaActionElements/ButtonOption'
 
 export default function Hygeia(props) {
+  const dispatch = useDispatch()
   const { message, dependencyFormData } = props
   const [ component, setComponent ] = useState(<TypingIndicator />)
   const [ bufferDone, setBuffer ] = useState(message.type === 'button-option')
@@ -13,6 +16,19 @@ export default function Hygeia(props) {
     switch(messageData.type) {
       case 'message':
         return <HygeiaMessage text={messageData.text} />
+      case 'input-type-message':
+      {
+        dispatch(setInputTyping(messageData))
+        return <HygeiaMessage text={messageData.message} />
+      }
+      case 'input-dependent':
+      {
+        let inputKey = messageData.inputKey
+        let responses = localStorage.getItem('responses') ? JSON.parse(localStorage.getItem('responses')) : {}
+        let value = responses[inputKey] || ''
+        let message =  messageData.text.replace(`{${inputKey}}`, value)
+        return <HygeiaMessage text={message} />
+      }
       case 'button-option':
       {
         return <ButtonOption {...props} />

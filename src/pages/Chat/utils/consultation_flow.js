@@ -5,7 +5,7 @@ export default [
       {
         from: 'hygeia',
         messages: [
-          { type: 'message', text: "I'm Hygeia, your healthcare assistant ."}, 
+          { type: 'message', text: "Hi! I'm Hygeia, your healthcare assistant."}, 
           { type: 'message', text: "Let's Get Started." },
           { type: 'message', text: "Are you a Client or a Provider?" },
           {
@@ -41,6 +41,22 @@ export default [
     ]
   },
   {
+    code: 'stateOfResidence',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'stateOfResidence',
+            message: "What State are you located now?"
+          }
+        ]
+      }
+    ]
+  },
+  {
     code: 'patientName',
     conversation: [
       {
@@ -49,7 +65,7 @@ export default [
           { type: 'message', text: "Now, I'd like to know a bit more of you."}, 
           {
             type: 'input-type-message',
-            inputType: 'textField',
+            inputType: 'text',
             inputKey: 'patientName',
             message: "What's your name?"
           }
@@ -63,6 +79,7 @@ export default [
       {
         from: 'hygeia',
         messages: [
+          { type: 'input-dependent', inputKey: 'patientName' , text: "Hi {patientName}! Are you a male or female?"}, 
           {
             type: 'button-option',
             inputKey: 'gender',
@@ -84,7 +101,7 @@ export default [
         messages: [
           {
             type: 'input-type-message',
-            inputType: 'textField',
+            inputType: 'number',
             inputKey: 'birthYear',
             message: "What year were you born?"
           }
@@ -100,13 +117,14 @@ export default [
         messages: [
           { type: 'message', text: "Great, I have identified medical information for 625,123 people of your age and sex. "}, 
           { type: 'message', text: "I'll be able to compare your symptoms to theirs."}, 
+          { type: 'message', text: "Would like to more provide information about your symptoms?"}, 
           {
             type: 'button-option',
             inputKey: 'didProvideSymptoms',
             message: "Would you like to provide more information about your symptoms?",
             inputOptions: [
-              { value: 'male', label: 'Male' },
-              { value: 'female', label: 'Female' }
+              { value: 'continue', label: 'Continue' },
+              { value: 'back', label: 'Back' }
             ]
           }
         ]
@@ -119,6 +137,7 @@ export default [
       {
         from: 'hygeia',
         messages: [
+          { type: 'message', text: "Which part of the body is affected?"}, 
           {
             type: 'button-option',
             inputKey: 'symptoms',
@@ -164,6 +183,7 @@ export default [
       {
         from: 'hygeia',
         messages: [
+          { type: 'message', text: "How would you like to pay?"}, 
           {
             type: 'button-option',
             inputKey: 'modeOfPayment',

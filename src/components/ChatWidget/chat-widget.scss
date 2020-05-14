@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700);
 @-webkit-keyframes indicator {
     0%,
     to {
@@ -187,38 +186,7 @@
     opacity: 0
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    outline: none;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-font-smoothing: antialiased!important;
-    -moz-osx-font-smoothing: grayscale
-}
-
-a {
-    text-decoration: none
-}
-
-body,
-html {
-    height: 100%;
-    width: 100%;
-    overflow: hidden
-}
-
-body,
-button,
-input,
-select {
-    font-family: Source Sans Pro, sans-serif
-}
-
-#app {
+.chat-widget {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -235,21 +203,21 @@ select {
     cursor: pointer;
 }
 
-#app[data-align=left],
-#app[data-align=left] .app-wrapper {
+.chat-widget[data-align=left],
+.chat-widget[data-align=left] .chat-widget-wrapper {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start
 }
 
-#app[data-align=right],
-#app[data-align=right] .app-wrapper {
+.chat-widget[data-align=right],
+.chat-widget[data-align=right] .chat-widget-wrapper {
     -webkit-box-align: end;
     -ms-flex-align: end;
     align-items: flex-end
 }
 
-#app .app-wrapper {
+.chat-widget .chat-widget-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -262,14 +230,14 @@ select {
     justify-content: flex-end
 }
 
-#app .app-wrapper.app-responsive {
+.chat-widget .chat-widget-wrapper.chat-widget-responsive {
     height: 100%;
     width: 100%;
     max-width: 100%;
     max-height: 100%
 }
 
-#app .app-wrapper .tpl-powered-by {
+.chat-widget .chat-widget-wrapper .tpl-powered-by {
     font-size: 12px;
     line-height: 16px;
     font-weight: 600;
@@ -293,13 +261,13 @@ select {
     border-top-style: solid
 }
 
-#app .app-wrapper .tpl-avatar {
+.chat-widget .chat-widget-wrapper .tpl-avatar {
     width: 100%;
     height: 100%;
     position: relative
 }
 
-#app .app-wrapper .tpl-avatar .tpl-avatar-image {
+.chat-widget .chat-widget-wrapper .tpl-avatar .tpl-avatar-image {
     width: 100%;
     height: 100%;
     border-radius: 100%;
@@ -308,7 +276,7 @@ select {
     box-shadow: 0 0 7px 0 rgba(0, 0, 0, .15)
 }
 
-#app .app-wrapper .tpl-avatar .tpl-avatar-status {
+.chat-widget .chat-widget-wrapper .tpl-avatar .tpl-avatar-status {
     border-radius: 100%;
     position: absolute;
     bottom: 7%;
@@ -320,7 +288,7 @@ select {
     border-style: solid
 }
 
-#app .app-wrapper .tpl-close {
+.chat-widget .chat-widget-wrapper .tpl-close {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -331,106 +299,111 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .tpl-close:hover {
+.chat-widget .chat-widget-wrapper .tpl-close:hover {
     opacity: .8!important
 }
 
-#app .app-wrapper .tpl-close:active {
+.chat-widget .chat-widget-wrapper .tpl-close:active {
     opacity: .5!important
 }
 
-#app .app-wrapper .tpl-close:disabled {
+.chat-widget .chat-widget-wrapper .tpl-close:disabled {
     opacity: .2
 }
 
-#app .app-wrapper .tpl-close svg {
+.chat-widget .chat-widget-wrapper .tpl-close svg {
     width: 100%;
-    height: 100%
+    height: 100%;
+    color: #fff;
 }
 
-#app .app-wrapper .tpl-close[data-size=normal] {
+.chat-widget .chat-widget-wrapper .tpl-close[data-size=normal] {
     width: 25px;
     height: 25px
 }
 
-#app .app-wrapper .tpl-close[data-size=small] {
+.chat-widget .chat-widget-wrapper .tpl-close[data-size=small] {
     width: 20px;
     height: 20px;
     padding: 2px
 }
 
-#app .app-wrapper .tpl-text-response-wrapper {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    flex-direction: column
+    flex-direction: column;
+    max-width: 100%;
+    flex: 1;
+    margin: 0 10px;
 }
 
-#app .app-wrapper .tpl-text-response-wrapper .tpl-text-response {
-    font-size: 16px;
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper .tpl-text-response {
+    font-size: 14px;
     line-height: 20px;
     word-wrap: break-word;
     white-space: pre-wrap;
     max-width: 100%;
     padding: 15px 17px;
-    border-radius: 20px
+    border-radius: 20px;
+    text-align: left;
 }
 
-#app .app-wrapper .tpl-text-response-wrapper .tpl-text-response+.tpl-text-response {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper .tpl-text-response+.tpl-text-response {
     margin-top: 5px
 }
 
-#app .app-wrapper .tpl-text-response-wrapper[data-type=user] {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper[data-type=user] {
     -webkit-box-align: end;
     -ms-flex-align: end;
     align-items: flex-end
 }
 
-#app .app-wrapper .tpl-text-response-wrapper[data-type=user] .tpl-text-response:first-child {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper[data-type=user] .tpl-text-response:first-child {
     border-radius: 20px 20px 5px 20px
 }
 
-#app .app-wrapper .tpl-text-response-wrapper[data-type=user] .tpl-text-response:not(:first-child):not(:last-child) {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper[data-type=user] .tpl-text-response:not(:first-child):not(:last-child) {
     border-radius: 20px 5px 5px 20px
 }
 
-#app .app-wrapper .tpl-text-response-wrapper[data-type=user] .tpl-text-response:last-child {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper[data-type=user] .tpl-text-response:last-child {
     border-radius: 20px 5px 20px 20px
 }
 
-#app .app-wrapper .tpl-text-response-wrapper[data-type=bot] {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper[data-type=bot] {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start
 }
 
-#app .app-wrapper .tpl-text-response-wrapper[data-type=bot] .tpl-text-response:first-child {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper[data-type=bot] .tpl-text-response:first-child {
     border-radius: 20px 20px 20px 5px
 }
 
-#app .app-wrapper .tpl-text-response-wrapper[data-type=bot] .tpl-text-response:not(:first-child):not(:last-child) {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper[data-type=bot] .tpl-text-response:not(:first-child):not(:last-child) {
     border-radius: 5px 20px 20px 5px
 }
 
-#app .app-wrapper .tpl-text-response-wrapper[data-type=bot] .tpl-text-response:last-child {
+.chat-widget .chat-widget-wrapper .tpl-text-response-wrapper[data-type=bot] .tpl-text-response:last-child {
     border-radius: 5px 20px 20px 20px
 }
 
-#app .app-wrapper .tpl-card-response {
+.chat-widget .chat-widget-wrapper .tpl-card-response {
     width: 240px;
     border-radius: 10px;
     border: 1px solid;
     overflow: hidden
 }
 
-#app .app-wrapper .tpl-card-response .tpl-card-response-image {
+.chat-widget .chat-widget-wrapper .tpl-card-response .tpl-card-response-image {
     height: 170px
 }
 
-#app .app-wrapper .tpl-card-response .tpl-card-response-content {
+.chat-widget .chat-widget-wrapper .tpl-card-response .tpl-card-response-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -441,7 +414,7 @@ select {
     padding: 0 20px 30px
 }
 
-#app .app-wrapper .tpl-card-response .tpl-card-response-content .tpl-card-response-title {
+.chat-widget .chat-widget-wrapper .tpl-card-response .tpl-card-response-content .tpl-card-response-title {
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
@@ -450,14 +423,14 @@ select {
     margin-top: 12px
 }
 
-#app .app-wrapper .tpl-card-response .tpl-card-response-content .tpl-card-response-description {
+.chat-widget .chat-widget-wrapper .tpl-card-response .tpl-card-response-content .tpl-card-response-description {
     font-size: 16px;
     line-height: 20px;
     word-wrap: break-word;
     margin-top: 12px
 }
 
-#app .app-wrapper .tpl-response-buttons {
+.chat-widget .chat-widget-wrapper .tpl-response-buttons {
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -468,7 +441,7 @@ select {
     flex-direction: column
 }
 
-#app .app-wrapper .tpl-response-buttons .tpl-response-buttons-button {
+.chat-widget .chat-widget-wrapper .tpl-response-buttons .tpl-response-buttons-button {
     font-weight: 600;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -485,19 +458,19 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .tpl-response-buttons .tpl-response-buttons-button:hover {
+.chat-widget .chat-widget-wrapper .tpl-response-buttons .tpl-response-buttons-button:hover {
     opacity: .8!important
 }
 
-#app .app-wrapper .tpl-response-buttons .tpl-response-buttons-button:active {
+.chat-widget .chat-widget-wrapper .tpl-response-buttons .tpl-response-buttons-button:active {
     opacity: .5!important
 }
 
-#app .app-wrapper .tpl-response-buttons .tpl-response-buttons-button:disabled {
+.chat-widget .chat-widget-wrapper .tpl-response-buttons .tpl-response-buttons-button:disabled {
     opacity: .2
 }
 
-#app .app-wrapper .tpl-response-buttons .tpl-response-buttons-button .tpl-response-buttons-button-text {
+.chat-widget .chat-widget-wrapper .tpl-response-buttons .tpl-response-buttons-button .tpl-response-buttons-button-text {
     white-space: nowrap;
     overflow: hidden!important;
     text-overflow: ellipsis;
@@ -505,27 +478,27 @@ select {
     width: 100%
 }
 
-#app .app-wrapper .tpl-response {
+.chat-widget .chat-widget-wrapper .tpl-response {
     margin-top: 8px
 }
 
-#app .app-wrapper .tpl-response[data-padding=none] {
+.chat-widget .chat-widget-wrapper .tpl-response[data-padding=none] {
     padding: 0
 }
 
-#app .app-wrapper .tpl-response[data-padding=symmetrical] {
-    padding: 0 31px
+.chat-widget .chat-widget-wrapper .tpl-response[data-padding=inline] {
+    padding: 0 10px
 }
 
-#app .app-wrapper .tpl-response[data-padding=increased] {
+.chat-widget .chat-widget-wrapper .tpl-response[data-padding=increased] {
     padding: 0 31px 0 61px
 }
 
-#app .app-wrapper .maximized {
+.chat-widget .chat-widget-wrapper .maximized {
     position: relative
 }
 
-#app .app-wrapper .maximized[data-mobile=false] {
+.chat-widget .chat-widget-wrapper .maximized[data-mobile=false] {
     margin: 20px;
     max-width: calc(100% - 40px);
     max-height: calc(100% - 40px);
@@ -537,12 +510,12 @@ select {
     overflow: hidden
 }
 
-#app .app-wrapper .maximized[data-mobile=true] {
+.chat-widget .chat-widget-wrapper .maximized[data-mobile=true] {
     width: 100%;
     height: 100%
 }
 
-#app .app-wrapper .maximized .welcome-screen {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen {
     z-index: 1;
     overscroll-behavior-y: contain;
     overflow-y: auto;
@@ -557,46 +530,46 @@ select {
     height: 100%
 }
 
-#app .app-wrapper .maximized .welcome-screen .close {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .close {
     position: absolute;
     top: 18px;
     right: 18px
 }
 
-#app .app-wrapper .maximized .welcome-screen .background-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .background-wrapper {
     margin-bottom: 16px
 }
 
-#app .app-wrapper .maximized .welcome-screen .background-wrapper .no-background {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .background-wrapper .no-background {
     height: 87px;
     width: 100%
 }
 
-#app .app-wrapper .maximized .welcome-screen .background-wrapper .background {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .background-wrapper .background {
     height: 185px;
     width: 100%
 }
 
-#app .app-wrapper .maximized .welcome-screen .background-wrapper .avatar {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .background-wrapper .avatar {
     width: 60px;
     height: 60px;
     margin: -30px 0 0 42px
 }
 
-#app .app-wrapper .maximized .welcome-screen .header {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .header {
     font-size: 24px;
     line-height: 31px;
     font-weight: 600;
     margin: 0 42px
 }
 
-#app .app-wrapper .maximized .welcome-screen .status {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .status {
     font-size: 15px;
     line-height: 19px;
     margin: 0 42px
 }
 
-#app .app-wrapper .maximized .welcome-screen .content {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -614,7 +587,7 @@ select {
     border-radius: 4px
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .description {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .description {
     font-size: 16px;
     line-height: 20px;
     text-align: center;
@@ -622,7 +595,7 @@ select {
     width: 100%
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .button {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .button {
     font-size: 18px;
     line-height: 23px;
     font-weight: 600;
@@ -648,15 +621,15 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .button:hover {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .button:hover {
     opacity: .8
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .button:active {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .button:active {
     opacity: .6
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .button[data-loading=true] {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .button[data-loading=true] {
     border-radius: 100%;
     width: 38px;
     font-size: 0;
@@ -671,7 +644,7 @@ select {
     border-bottom-color: transparent!important
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .button-error {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .button-error {
     font-size: 15px;
     line-height: 19px;
     font-weight: 600;
@@ -679,13 +652,13 @@ select {
     color: #e07171
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .icons {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .icons {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .icons .social-icon {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .icons .social-icon {
     width: 16px;
     height: 16px;
     margin: 30px 5px 0;
@@ -694,12 +667,12 @@ select {
     display: flex
 }
 
-#app .app-wrapper .maximized .welcome-screen .content .icons .social-icon svg {
+.chat-widget .chat-widget-wrapper .maximized .welcome-screen .content .icons .social-icon svg {
     width: 100%;
     height: 100%
 }
 
-#app .app-wrapper .maximized .content-screen {
+.chat-widget .chat-widget-wrapper .maximized .content-screen {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -711,38 +684,40 @@ select {
     height: 100%
 }
 
-#app .app-wrapper .maximized .content-screen .top {
-    position: relative;
-    z-index: 3;
-    height: 100px;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 0 24px
+.chat-widget .chat-widget-wrapper .maximized .content-screen .top {
+  position: relative;
+  z-index: 3;
+  height: 70px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 12px;
+  background: var(--primary-color);
 }
 
-#app .app-wrapper .maximized .content-screen .top[data-shadow=true] {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .top[data-shadow=true] {
     -webkit-box-shadow: 0 9.5px 12.7px 0 rgba(0, 0, 0, .05);
     box-shadow: 0 9.5px 12.7px 0 rgba(0, 0, 0, .05)
 }
 
-#app .app-wrapper .maximized .content-screen .top .close {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .top .close {
     position: absolute;
     top: 18px;
-    right: 18px
+    right: 18px;
+    color: #fff;
 }
 
-#app .app-wrapper .maximized .content-screen .top .avatar {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .top .avatar {
     width: 60px;
     height: 60px;
-    margin-right: 22px
+    margin-right: 10px
 }
 
-#app .app-wrapper .maximized .content-screen .top .company {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .top .company {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
@@ -751,24 +726,28 @@ select {
     width: 0
 }
 
-#app .app-wrapper .maximized .content-screen .top .company .header {
-    font-size: 24px;
+.chat-widget .chat-widget-wrapper .maximized .content-screen .top .company .header {
+    font-size: 20px;
     line-height: 31px;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden!important;
     text-overflow: ellipsis;
     padding-right: 15px;
-    cursor: default
+    cursor: default;
+    text-align: left;
+    color: #fff;
 }
 
-#app .app-wrapper .maximized .content-screen .top .company .status {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .top .company .status {
     font-size: 15px;
     line-height: 19px;
-    cursor: default
+    cursor: default;
+    text-align: left;
+    color: rgb(105, 222, 64);
 }
 
-#app .app-wrapper .maximized .content-screen .top .offline {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .top .offline {
     white-space: nowrap;
     overflow: hidden!important;
     text-overflow: ellipsis;
@@ -792,7 +771,7 @@ select {
     padding: 0 20px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation {
     overscroll-behavior-y: contain;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -809,7 +788,7 @@ select {
     overflow-y: auto
 }
 
-#app .app-wrapper .maximized .content-screen .conversation:after {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation:after {
     content: "";
     display: -webkit-box;
     display: -ms-flexbox;
@@ -820,11 +799,11 @@ select {
     flex-shrink: 0
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .user-caption-response-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .user-caption-response-wrapper {
     margin-top: 8px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .user-caption-response-wrapper .caption {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .user-caption-response-wrapper .caption {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -833,7 +812,7 @@ select {
     align-items: center
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .user-caption-response-wrapper .caption .caption-text {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .user-caption-response-wrapper .caption .caption-text {
     -webkit-box-flex: 1;
     -ms-flex: 1 0;
     flex: 1 0;
@@ -842,14 +821,15 @@ select {
     line-height: 18px;
     white-space: nowrap;
     overflow: hidden!important;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    text-align: left;
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .bot-caption-response-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .bot-caption-response-wrapper {
     margin-top: 8px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .bot-caption-response-wrapper .caption {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .bot-caption-response-wrapper .caption {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -858,30 +838,31 @@ select {
     align-items: center
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .bot-caption-response-wrapper .caption .caption-text {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .bot-caption-response-wrapper .caption .caption-text {
     -webkit-box-flex: 1;
     -ms-flex: 1 0;
     flex: 1 0;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 18px;
     white-space: nowrap;
     overflow: hidden!important;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    text-align: left;
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .bot-caption-response-wrapper .caption .avatar {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .bot-caption-response-wrapper .caption .avatar {
     width: 24px;
     height: 24px;
     margin-right: 8px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .indicator-response-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .indicator-response-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .indicator-response-wrapper .indicator-response {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .indicator-response-wrapper .indicator-response {
     font-size: 16px;
     line-height: 20px;
     word-wrap: break-word;
@@ -895,7 +876,7 @@ select {
     display: flex
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .indicator-response-wrapper .indicator-response .dot {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .indicator-response-wrapper .indicator-response .dot {
     width: 4px;
     height: 4px;
     border-radius: 100%;
@@ -906,17 +887,17 @@ select {
     animation-delay: 0s
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .indicator-response-wrapper .indicator-response .dot:first-child {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .indicator-response-wrapper .indicator-response .dot:first-child {
     -webkit-animation-delay: -.125s;
     animation-delay: -.125s
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .indicator-response-wrapper .indicator-response .dot:last-child {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .indicator-response-wrapper .indicator-response .dot:last-child {
     -webkit-animation-delay: .25s;
     animation-delay: .25s
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper {
     position: relative;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -924,7 +905,7 @@ select {
     user-select: none
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation {
     position: absolute;
     pointer-events: none;
     width: 100%;
@@ -940,7 +921,7 @@ select {
     align-items: center
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow {
     z-index: 2;
     pointer-events: all;
     width: 36px;
@@ -964,66 +945,66 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow:hover {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow:hover {
     opacity: .8!important
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow:active {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow:active {
     opacity: .5!important
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow:disabled {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow:disabled {
     opacity: .2
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow[data-direction=prev] svg {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow[data-direction=prev] svg {
     position: relative;
     left: -1px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow[data-direction=next] {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-navigation .arrow[data-direction=next] {
     margin-left: auto
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     overflow: hidden
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response::-webkit-scrollbar {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response::-webkit-scrollbar {
     display: none
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response .card {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response .card {
     -webkit-transition: opacity .3s;
     transition: opacity .3s
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response .card:not(:last-child) {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response .card:not(:last-child) {
     margin-right: 15px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response .card:not(.visible) {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response .card:not(.visible) {
     opacity: .6
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response .spacer {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .cards-response-wrapper .cards-response .spacer {
     -ms-flex-negative: 0;
     flex-shrink: 0;
     content: "";
     width: 31px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .button-response-wrapper .button-response {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .button-response-wrapper .button-response {
     width: 240px;
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .button-response-wrapper .button-response .button-response-content {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .button-response-wrapper .button-response .button-response-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1034,14 +1015,14 @@ select {
     padding: 0 20px 30px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .button-response-wrapper .button-response .button-response-content .button-response-description {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .button-response-wrapper .button-response .button-response-content .button-response-description {
     font-size: 16px;
     line-height: 20px;
     word-wrap: break-word;
     margin-top: 12px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .quick-replies-response {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .quick-replies-response {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1052,7 +1033,7 @@ select {
     justify-content: center
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply {
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
@@ -1074,19 +1055,19 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply:hover {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply:hover {
     opacity: .8!important
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply:active {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply:active {
     opacity: .5!important
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply:disabled {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply:disabled {
     opacity: .2
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply span {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .quick-replies-response .quick-reply span {
     white-space: nowrap;
     overflow: hidden!important;
     text-overflow: ellipsis;
@@ -1094,37 +1075,37 @@ select {
     display: block
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .image-response-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .image-response-wrapper {
     border-radius: 10px;
     overflow: hidden
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .image-response-wrapper[data-loaded=false] {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .image-response-wrapper[data-loaded=false] {
     height: 240px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .sending-response-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .sending-response-wrapper {
     margin-top: auto
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .sending-response-wrapper .sending-response {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .sending-response-wrapper .sending-response {
     font-size: 15px;
     line-height: 19px;
     padding-top: 25px
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .sending-error-response-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .sending-error-response-wrapper {
     margin-top: auto
 }
 
-#app .app-wrapper .maximized .content-screen .conversation .sending-error-response-wrapper .sending-error-response {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .conversation .sending-error-response-wrapper .sending-error-response {
     font-size: 15px;
     line-height: 19px;
     color: #e07171;
     padding-top: 25px
 }
 
-#app .app-wrapper .maximized .content-screen .typing {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing {
     height: 50px;
     width: 100%;
     border-top: 1px solid;
@@ -1137,7 +1118,7 @@ select {
     padding-right: 20px
 }
 
-#app .app-wrapper .maximized .content-screen .typing input {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing input {
     font-size: 16px;
     line-height: 20px;
     height: 100%;
@@ -1149,23 +1130,23 @@ select {
     border: 0
 }
 
-#app .app-wrapper .maximized .content-screen .typing input::-webkit-input-placeholder {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing input::-webkit-input-placeholder {
     color: currentColor
 }
 
-#app .app-wrapper .maximized .content-screen .typing input:-ms-input-placeholder {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing input:-ms-input-placeholder {
     color: currentColor
 }
 
-#app .app-wrapper .maximized .content-screen .typing input::-ms-input-placeholder {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing input::-ms-input-placeholder {
     color: currentColor
 }
 
-#app .app-wrapper .maximized .content-screen .typing input::placeholder {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing input::placeholder {
     color: currentColor
 }
 
-#app .app-wrapper .maximized .content-screen .typing .send-icon {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing .send-icon {
     width: 26px;
     height: 26px;
     -webkit-box-flex: 0;
@@ -1177,29 +1158,29 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .maximized .content-screen .typing .send-icon:hover {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing .send-icon:hover {
     opacity: .8!important
 }
 
-#app .app-wrapper .maximized .content-screen .typing .send-icon:active {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing .send-icon:active {
     opacity: .5!important
 }
 
-#app .app-wrapper .maximized .content-screen .typing .send-icon:disabled {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing .send-icon:disabled {
     opacity: .2
 }
 
-#app .app-wrapper .maximized .content-screen .typing .send-icon svg {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing .send-icon svg {
     width: 100%;
     height: 100%
 }
 
-#app .app-wrapper .maximized .content-screen .typing .send-icon svg path {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .typing .send-icon svg path {
     -webkit-transition: fill .3s;
     transition: fill .3s
 }
 
-#app .app-wrapper .maximized .content-screen .start-again {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .start-again {
     padding: 10px;
     width: 100%;
     display: -webkit-box;
@@ -1213,7 +1194,7 @@ select {
     justify-content: center
 }
 
-#app .app-wrapper .maximized .content-screen .start-again .button {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .start-again .button {
     font-weight: 600;
     font-size: 18px;
     line-height: 23px;
@@ -1229,19 +1210,19 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .maximized .content-screen .start-again .button:hover {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .start-again .button:hover {
     opacity: .8!important
 }
 
-#app .app-wrapper .maximized .content-screen .start-again .button:active {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .start-again .button:active {
     opacity: .5!important
 }
 
-#app .app-wrapper .maximized .content-screen .start-again .button:disabled {
+.chat-widget .chat-widget-wrapper .maximized .content-screen .start-again .button:disabled {
     opacity: .2
 }
 
-#app .app-wrapper .maximized .window-moment {
+.chat-widget .chat-widget-wrapper .maximized .window-moment {
     z-index: 4;
     top: 0;
     right: 0;
@@ -1254,8 +1235,8 @@ select {
     background: rgba(0, 0, 0, .3)
 }
 
-#app .app-wrapper .maximized .window-moment,
-#app .app-wrapper .maximized .window-moment .moment {
+.chat-widget .chat-widget-wrapper .maximized .window-moment,
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1265,14 +1246,14 @@ select {
     flex-direction: column
 }
 
-#app .app-wrapper .maximized .window-moment .moment {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment {
     position: relative;
     border-radius: 10px;
     background: #fff;
     overflow: hidden
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-header {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-header {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1284,14 +1265,14 @@ select {
     padding: 0 20px
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-header .moment-header-favicon {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-header .moment-header-favicon {
     width: 25px;
     height: 25px;
     border-radius: 4px;
     overflow: hidden
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-header .moment-header-title {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-header .moment-header-title {
     font-size: 16px;
     line-height: 20px;
     white-space: nowrap;
@@ -1304,49 +1285,49 @@ select {
     flex: 1 0
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-frame-wrapper {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-frame-wrapper {
     -webkit-box-flex: 1;
     -ms-flex: 1 0;
     flex: 1 0
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-frame-wrapper iframe {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-frame-wrapper iframe {
     border: 0;
     width: 100%
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-frame-wrapper[data-ios=false] iframe {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-frame-wrapper[data-ios=false] iframe {
     height: 100%
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-frame-wrapper[data-ios=true] {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-frame-wrapper[data-ios=true] {
     -webkit-overflow-scrolling: touch;
     overflow: scroll
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-frame-wrapper[data-ios=true] iframe {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-frame-wrapper[data-ios=true] iframe {
     min-height: 100%
 }
 
-#app .app-wrapper .maximized .window-moment .moment[data-height=full] {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment[data-height=full] {
     -webkit-box-flex: 1;
     -ms-flex: 1 1;
     flex: 1 1
 }
 
-#app .app-wrapper .maximized .window-moment .moment[data-height=tall] {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment[data-height=tall] {
     -webkit-box-flex: 0;
     -ms-flex: 0 1 450px;
     flex: 0 1 450px
 }
 
-#app .app-wrapper .maximized .window-moment .moment[data-height=compact] {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment[data-height=compact] {
     -webkit-box-flex: 0;
     -ms-flex: 0 1 280px;
     flex: 0 1 280px
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-loader {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-loader {
     z-index: 5;
     top: 0;
     right: 0;
@@ -1365,13 +1346,13 @@ select {
     justify-content: center
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-loader .loader {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-loader .loader {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-loader .loader>div {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-loader .loader>div {
     -webkit-animation: indicator 1.5s ease-in-out infinite both;
     animation: indicator 1.5s ease-in-out infinite both;
     -webkit-animation-delay: 0s;
@@ -1382,17 +1363,17 @@ select {
     border-radius: 100%
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-loader .loader>div:first-child {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-loader .loader>div:first-child {
     -webkit-animation-delay: -.1875s;
     animation-delay: -.1875s
 }
 
-#app .app-wrapper .maximized .window-moment .moment .moment-loader .loader>div:last-child {
+.chat-widget .chat-widget-wrapper .maximized .window-moment .moment .moment-loader .loader>div:last-child {
     -webkit-animation-delay: .375s;
     animation-delay: .375s
 }
 
-#app .app-wrapper .minimized {
+.chat-widget .chat-widget-wrapper .minimized {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1407,19 +1388,19 @@ select {
     max-width: 100%
 }
 
-#app .app-wrapper .minimized[data-align=left] {
+.chat-widget .chat-widget-wrapper .minimized[data-align=left] {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start
 }
 
-#app .app-wrapper .minimized[data-align=right] {
+.chat-widget .chat-widget-wrapper .minimized[data-align=right] {
     -webkit-box-align: end;
     -ms-flex-align: end;
     align-items: flex-end
 }
 
-#app .app-wrapper .minimized .greeting-wrapper {
+.chat-widget .chat-widget-wrapper .minimized .greeting-wrapper {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1438,16 +1419,16 @@ select {
     margin: 20px 20px 0
 }
 
-#app .app-wrapper .minimized .greeting-wrapper[data-mobile=true] .greeting-close {
+.chat-widget .chat-widget-wrapper .minimized .greeting-wrapper[data-mobile=true] .greeting-close {
     opacity: 1
 }
 
-#app .app-wrapper .minimized .greeting-wrapper .greeting-close {
+.chat-widget .chat-widget-wrapper .minimized .greeting-wrapper .greeting-close {
     opacity: 0;
     margin-bottom: 10px
 }
 
-#app .app-wrapper .minimized .greeting-wrapper .greeting-content-wrapper {
+.chat-widget .chat-widget-wrapper .minimized .greeting-wrapper .greeting-content-wrapper {
     word-wrap: break-word;
     font-size: 16px;
     line-height: 20px;
@@ -1465,20 +1446,20 @@ select {
     text-align: left
 }
 
-#app .app-wrapper .minimized .greeting-wrapper .greeting-content-wrapper:hover {
+.chat-widget .chat-widget-wrapper .minimized .greeting-wrapper .greeting-content-wrapper:hover {
     -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, .2);
     box-shadow: 0 5px 20px rgba(0, 0, 0, .2)
 }
 
-#app .app-wrapper .minimized .greeting-wrapper .greeting-content-wrapper:active {
+.chat-widget .chat-widget-wrapper .minimized .greeting-wrapper .greeting-content-wrapper:active {
     opacity: .6
 }
 
-#app .app-wrapper .minimized .greeting-wrapper:hover .greeting-close {
+.chat-widget .chat-widget-wrapper .minimized .greeting-wrapper:hover .greeting-close {
     opacity: 1
 }
 
-#app .app-wrapper .minimized .theme-bar {
+.chat-widget .chat-widget-wrapper .minimized .theme-bar {
     width: 250px;
     height: 36px;
     display: -webkit-box;
@@ -1503,19 +1484,19 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .minimized .theme-bar:hover {
+.chat-widget .chat-widget-wrapper .minimized .theme-bar:hover {
     opacity: .8!important
 }
 
-#app .app-wrapper .minimized .theme-bar:active {
+.chat-widget .chat-widget-wrapper .minimized .theme-bar:active {
     opacity: .5!important
 }
 
-#app .app-wrapper .minimized .theme-bar:disabled {
+.chat-widget .chat-widget-wrapper .minimized .theme-bar:disabled {
     opacity: .2
 }
 
-#app .app-wrapper .minimized .theme-bar .theme-bar-status {
+.chat-widget .chat-widget-wrapper .minimized .theme-bar .theme-bar-status {
     width: 10px;
     height: 10px;
     border-radius: 100%;
@@ -1523,7 +1504,7 @@ select {
     margin-right: 10px
 }
 
-#app .app-wrapper .minimized .theme-bar .theme-bar-text {
+.chat-widget .chat-widget-wrapper .minimized .theme-bar .theme-bar-text {
     white-space: nowrap;
     overflow: hidden!important;
     text-overflow: ellipsis;
@@ -1534,7 +1515,7 @@ select {
     flex: 1 0
 }
 
-#app .app-wrapper .minimized .theme-bubble {
+.chat-widget .chat-widget-wrapper .minimized .theme-bubble {
     width: 60px;
     height: 60px;
     border-radius: 100%;
@@ -1548,23 +1529,23 @@ select {
     cursor: pointer
 }
 
-#app .app-wrapper .minimized .theme-bubble:hover {
+.chat-widget .chat-widget-wrapper .minimized .theme-bubble:hover {
     opacity: .8!important
 }
 
-#app .app-wrapper .minimized .theme-bubble:active {
+.chat-widget .chat-widget-wrapper .minimized .theme-bubble:active {
     opacity: .5!important
 }
 
-#app .app-wrapper .minimized .theme-bubble:disabled {
+.chat-widget .chat-widget-wrapper .minimized .theme-bubble:disabled {
     opacity: .2
 }
 
-#app .app-wrapper .minimized .theme-bubble svg {
+.chat-widget .chat-widget-wrapper .minimized .theme-bubble svg {
     padding: 13px
 }
 
-#app .app-wrapper .lazy-img .lazy-img-status {
+.chat-widget .chat-widget-wrapper .lazy-img .lazy-img-status {
     width: 100%;
     height: 100%;
     display: -webkit-box;
@@ -1580,7 +1561,7 @@ select {
     background-position: 50%
 }
 
-#app .app-wrapper .lazy-img .lazy-img-status img {
+.chat-widget .chat-widget-wrapper .lazy-img .lazy-img-status img {
     max-width: 80%;
     max-height: 80%;
     width: 70px;
@@ -1589,53 +1570,53 @@ select {
     object-fit: cover
 }
 
-#app .app-wrapper .lazy-img img.lazy-img-loaded {
+.chat-widget .chat-widget-wrapper .lazy-img img.lazy-img-loaded {
     display: block;
     background: transparent!important;
     max-width: 100%
 }
 
-#app .app-wrapper .lazy-img[data-status=loading] {
+.chat-widget .chat-widget-wrapper .lazy-img[data-status=loading] {
     width: 100%;
     height: 100%
 }
 
-#app .app-wrapper .lazy-img[data-status=loading] img.lazy-img-loaded {
+.chat-widget .chat-widget-wrapper .lazy-img[data-status=loading] img.lazy-img-loaded {
     visibility: hidden;
     height: 0
 }
 
-#app .app-wrapper .lazy-img[data-status=error] {
+.chat-widget .chat-widget-wrapper .lazy-img[data-status=error] {
     width: 100%;
     height: 100%
 }
 
-#app .app-wrapper .lazy-img[data-status=error] .lazy-img-status {
+.chat-widget .chat-widget-wrapper .lazy-img[data-status=error] .lazy-img-status {
     background-color: #e07171
 }
 
-#app .app-wrapper .lazy-img[data-status=error] img.lazy-img-loaded {
+.chat-widget .chat-widget-wrapper .lazy-img[data-status=error] img.lazy-img-loaded {
     visibility: hidden;
     height: 0
 }
 
-#app .app-wrapper .lazy-img[data-status=loaded][data-cover=false] img.lazy-img-loaded {
+.chat-widget .chat-widget-wrapper .lazy-img[data-status=loaded][data-cover=false] img.lazy-img-loaded {
     visibility: visible
 }
 
-#app .app-wrapper .lazy-img[data-status=loaded][data-cover=true] {
+.chat-widget .chat-widget-wrapper .lazy-img[data-status=loaded][data-cover=true] {
     height: 100%;
     width: 100%
 }
 
-#app .app-wrapper .lazy-img[data-status=loaded][data-cover=true] img.lazy-img-loaded {
+.chat-widget .chat-widget-wrapper .lazy-img[data-status=loaded][data-cover=true] img.lazy-img-loaded {
     height: 100%;
     width: 100%;
     -o-object-fit: cover;
     object-fit: cover
 }
 
-#app .app-wrapper a.anchor {
+.chat-widget .chat-widget-wrapper a.anchor {
     color: inherit;
     text-decoration: underline
 }
