@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.scss'
-import NavBar from './NavBar'
+import NavBar from '../NavBar'
 import Grid from 'react-md/lib/Grids/Grid'
 import Cell from 'react-md/lib/Grids/Cell'
 

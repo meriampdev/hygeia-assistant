@@ -5,7 +5,7 @@ import Grid from 'react-md/lib/Grids/Grid'
 import Cell from 'react-md/lib/Grids/Cell'
 import Button from 'react-md/lib/Buttons/Button'
 import Chatv2 from '../Chat/ChatBody/Chatv2'
-import NavBar from './NavBar'
+import NavBar from '../../components/NavBar'
 
 export default function LandingPage(props) {
   const [ widgetOpen, setWidget ] = useState(false)
@@ -22,7 +22,7 @@ export default function LandingPage(props) {
               <Button onClick={() => { setWidget(!widgetOpen) }} flat primary swapTheming >Get Started</Button>
             </div>
             <div className="hero-items md-grid">
-              <div className="hero-item md-cell md-cell--4">
+              <div className="hero-item md-cell md-cell--4 md-cell--center">
                   <div className="hero-icon">
                     <img src="https://img.icons8.com/wired/64/000000/private2.png" />
                   </div>
@@ -31,7 +31,7 @@ export default function LandingPage(props) {
                       that provides real-time connection between you and your doctor or your healthcare provider.
                   </div>
               </div>
-              <div className="hero-item md-cell md-cell--4">
+              <div className="hero-item md-cell md-cell--4 md-cell--center">
                   <div className="hero-icon">
                     <img src="https://img.icons8.com/carbon-copy/100/000000/form.png"/>
                   </div>
@@ -41,7 +41,7 @@ export default function LandingPage(props) {
                       to all appropriate board-certified healthcare providers according to the symptoms that you provide. 
                   </div>
               </div>
-              <div className="hero-item md-cell md-cell--4">
+              <div className="hero-item md-cell md-cell--4 md-cell--center">
                   <div className="hero-icon">
                     <img src="https://img.icons8.com/carbon-copy/100/000000/medical-doctor.png"/>
                   </div>
