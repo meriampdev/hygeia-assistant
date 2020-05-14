@@ -2,11 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 @import './phone-emulator.scss';
 
-$md-primary-color: #86c232;
+// $md-primary-color: #86c232;
 // $md-primary-color: #116466;
 // $md-primary-color: #45A29E;
-// $md-primary-color: $md-teal-500;
-// $md-secondary-color: $md-lime-a-400;
+$md-primary-color: $md-teal-500;
+$md-secondary-color: $md-lime-a-400;
 $md-secondary-color: #00796b;
 // $md-dark-theme-text-color: #86c232;
 $md-font-family: 'Work Sans', sans-serif;
@@ -34,7 +34,7 @@ $md-dark-theme-colors: (
 @include react-md-theme-everything(
   $md-primary-color,
   $md-secondary-color,
-  false, // specifying dark-theme
+  true, // specifying dark-theme
   'dark-theme' // class name to wrap dark-theme styles in
 );
 

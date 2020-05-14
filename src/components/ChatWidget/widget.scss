@@ -1,0 +1,20 @@
+.widget-container {
+  border: 0px;
+  background-color: transparent;
+  // pointer-events: none;
+  z-index: 2147483639;
+  position: fixed;
+  bottom: 0px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  opacity: 1;
+  max-width: 100%;
+  right: 0px;
+  max-height: 100%;
+
+  &.open {
+    width: 410px;
+    height: 700px;
+  }
+}
