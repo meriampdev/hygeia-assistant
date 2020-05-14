@@ -1,13 +1,15 @@
 import React from 'react'
 import './navbar.scss'
 import Button from 'react-md/lib/Buttons/Button'
+import { useHistory } from 'react-router-dom'
 
 export default function NavBar(props) {
+  const history = useHistory()
 	return (
     <div className="nav">
       <div className="nav-header">
         <div className="nav-title">
-          <div className='img-logo'>
+          <div className='img-logo' onClick={() => history.push('/')}>
             <img src={require('../../../sass/logo.png')} alt="Global Health Way" />
           </div>
         </div>

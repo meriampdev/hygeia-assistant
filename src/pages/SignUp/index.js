@@ -64,7 +64,7 @@ export default function SignUp(props) {
           </Cell>
           <Cell size={4}>
             <Textfield
-              defaultProps={{ id: "mobileNumber", type: "text", label: "Mobile Number" }}
+              defaultProps={{ id: "mobileNumber", type: "tel", label: "Mobile Number" }}
               fieldKey="mobileNumber" 
               onInputError={onInputError} onInputChange={onInputChange} submitAttempt={submitAttempt}
               validations={['required']}

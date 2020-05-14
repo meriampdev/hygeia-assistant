@@ -19,9 +19,11 @@
   display: inline-block;
   font-size: 22px;
   color: #fff;
+  z-index: 15;
   // padding: 10px 10px 10px 10px;
 
   .img-logo {
+    cursor: pointer;
     height: 2.5rem;
     img {
       object-fit: contain;

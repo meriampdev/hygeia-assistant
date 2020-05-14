@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom'
 const ChatMessages = React.forwardRef((props, ref) => {
   const next = useSelector(state => state.chat.next)
   const dataForNext = useSelector(state => state.chat.dataForNext)
-  let history = useHistory()
+  const history = useHistory()
 
   useEffect(() => {
     if(next) {
