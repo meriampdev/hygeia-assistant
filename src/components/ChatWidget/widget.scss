@@ -17,4 +17,12 @@
     width: 410px;
     height: 700px;
   }
+
+  @media only screen and (max-width: 760px) {
+    /* For mobile phones: */
+    &.open {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }

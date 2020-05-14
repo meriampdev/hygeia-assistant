@@ -2,10 +2,14 @@ import React from 'react'
 import MessageInput from './MessageInput'
 
 export default function ChatWidget(props) {
+
+  // device detection
+  let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
   return (
     <div className="chat-widget" data-align="right">
       <div className="chat-widget-wrapper chat-widget-responsive">
-        <div data-mobile="false" className="maximized">
+        <div data-mobile={isMobile} className="maximized">
           <div className="content-screen">
             <div data-shadow="true" className="top" style={{backround: 'rgb(255, 255, 255)'}} >
               <div className="close" onClick={props.toggleWidget}>
