@@ -11,6 +11,7 @@ export default [
           {
             type: 'button-option',
             inputKey: 'userRole',
+            inputPrompt: true,
             inputOptions: [
               { value: 'client', label: 'Client', actionInSentence: 'Im a Client.' },
               { value: 'provider', label: 'Provider', actionInSentence: 'Im a Provider.' }
@@ -26,13 +27,21 @@ export default [
       {
         from: 'hygeia',
         messages: [
+          {
+            type: 'message',
+            messageIsActionDependent: true,
+            actionKey: 'userRole',
+            messageValues: { client: 'If it is a medical emergency, please contact your local emergency services.', provider: '' },
+            message: "If it is a medical emergency, please contact your local emergency services."
+          },
           { type: 'message', text: 'Who is this visit for?' },
           {
             type: 'button-option',
             inputKey: 'visitFor',
+            inputPrompt: true,
             inputOptions: [
               { value: 'me', label: 'Me', actionInSentence: 'For me.' },
-              { value: 'child', label: 'My Child (18 and younger)', actionInSentence: 'For my child.' },
+              { value: 'child', label: 'My Child (Under 18)', actionInSentence: 'For my child.' },
               { value: 'someoneElse', label: 'Someone else', actionInSentence: 'For someone else.' }
             ]
           }
@@ -50,7 +59,15 @@ export default [
             type: 'input-type-message',
             inputType: 'text',
             inputKey: 'stateOfResidence',
-            message: "What State are you located now?"
+            messageIsActionDependent: true,
+            actionKey: 'visitFor',
+            messageValues: { 
+              child: 'In what state are you located right now?', 
+              me: 'What State are you located now?', 
+              someoneElse: 'If you are reporting for another person, please have that person create his/her own profile' 
+            },
+            message: "What State are you located now?",
+            inputPrompt: true,
           }
         ]
       }
@@ -62,12 +79,22 @@ export default [
       {
         from: 'hygeia',
         messages: [
-          { type: 'message', text: "Now, I'd like to know a bit more of you."}, 
+          {
+            type: 'message',
+            messageIsActionDependent: true,
+            actionKey: 'visitFor',
+            messageValues: { child: "Now, I'd like to know a bit more of your child.", me: "Now, I'd like to know a bit more of you." },
+            message: "Now, I'd like to know a bit more of you."
+          },
           {
             type: 'input-type-message',
             inputType: 'text',
             inputKey: 'patientName',
-            message: "What's your name?"
+            messageIsActionDependent: true,
+            actionKey: 'visitFor',
+            messageValues: { child: "What is your Child's name?", me: "What's your name?" },
+            message: "What's your name?",
+            inputPrompt: true,
           }
         ]
       }
@@ -79,16 +106,45 @@ export default [
       {
         from: 'hygeia',
         messages: [
-          { type: 'input-dependent', inputKey: 'patientName' , text: "Hi {patientName}! Are you a male or female?"}, 
+          { 
+            type: 'input-dependent', 
+            inputKey: 'patientName' , 
+            text: "Hi {patientName}! Are you a male or female?",
+            messageIsActionDependent: true,
+            actionKey: 'visitFor',
+            messageValues: { 
+              child: "Is your child a male or female?", 
+              me: "Hi {patientName}! Are you a male or female?" 
+            },
+            skippable: true,
+            skipValueKey: 'gender',
+            skippableValues: ['male', 'female', 'question', 'redo']
+          }, 
           {
             type: 'button-option',
             inputKey: 'gender',
-            message: "Hi {patientName}! Are you a male or female?",
+            skipValueKey: 'gender',
+            message: "",
             inputOptions: [
               { value: 'male', label: 'Male', actionInSentence: 'Male' },
-              { value: 'female', label: 'Female', actionInSentence: 'Female' }
-            ]
-          }
+              { value: 'female', label: 'Female', actionInSentence: 'Female' },
+              { value: 'question', label: 'Why only these options?', actionInSentence: 'Why only these options?' }
+            ],
+            skippable: true,
+            skippableValues: ['male', 'female', 'question'],
+            inputPrompt: true,
+          },
+          { 
+            type: 'input-dependent', 
+            inputKey: 'gender' , 
+            skipValueKey: 'gender',
+            text: "This question is about biological sex rather than gender identity, and for medical purposes only. Please select the medically relevant option.",
+            skippable: true,
+            skippableValues: ['redo','male', 'female', "", null, undefined],
+            redoStepAfterMessage: true,
+            stepCode: 'gender',
+            redoPoint: true
+          },
         ]
       }
     ]
@@ -103,7 +159,8 @@ export default [
             type: 'input-type-message',
             inputType: 'number',
             inputKey: 'birthYear',
-            message: "What year were you born?"
+            message: "What year were you born?",
+            inputPrompt: true,
           }
         ]
       }
@@ -117,11 +174,12 @@ export default [
         messages: [
           { type: 'message', text: "Great, I have identified medical information for 625,123 people of your age and sex. "}, 
           { type: 'message', text: "I'll be able to compare your symptoms to theirs."}, 
-          { type: 'message', text: "Would like to more provide information about your symptoms?"}, 
+          { type: 'message', text: "Would like to provide more information about your symptoms?"}, 
           {
             type: 'button-option',
             inputKey: 'didProvideSymptoms',
             message: "Would you like to provide more information about your symptoms?",
+            inputPrompt: true,
             inputOptions: [
               { value: 'continue', label: 'Continue' },
               { value: 'back', label: 'Back' }
@@ -142,6 +200,7 @@ export default [
             type: 'button-option',
             inputKey: 'symptoms',
             message: "Which part of the body is affected?",
+            inputPrompt: true,
             inputOptions: [
               { value: 'head', label: 'Head or Brain' },
               { value: 'eye', label: 'Eye' },
@@ -168,6 +227,7 @@ export default [
           {
             type: 'button-option',
             inputKey: 'speakToProvider',
+            inputPrompt: true,
             message: "",
             inputOptions: [
               { value: true, label: 'Speak with a healthcare provider' }
@@ -188,6 +248,7 @@ export default [
             type: 'button-option',
             inputKey: 'modeOfPayment',
             message: "",
+            inputPrompt: true,
             inputOptions: [
               { value: 'insurance', label: 'Use my insurance' },
               { value: 'notInsurance', label: 'Continue without insurance' },

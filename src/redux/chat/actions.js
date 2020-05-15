@@ -1,10 +1,9 @@
 import { USER_SEND_ANSER, SET_INPUT_TYPING, TRIGGER_NEXT } from './types'
+import { localStorageSetResponses } from '../../utils/easyLocalStorage'
 
 export function userSendAnswer(payload) {
 	const { inputProperties, value } = payload
-	let responses = localStorage.getItem('responses') ? JSON.parse(localStorage.getItem('responses')) : {}
-	responses[inputProperties.inputKey] = value
-	localStorage.setItem('responses', JSON.stringify(responses))
+  localStorageSetResponses(inputProperties.inputKey, value)
 	return function(dispatch) {
     dispatch({ type: TRIGGER_NEXT, payload: payload })
     dispatch( {

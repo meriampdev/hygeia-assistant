@@ -6,6 +6,7 @@ import UserForm from './UserForm'
 import _ from 'lodash'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { localStorageGet, localStorageSetResponses } from '../../../utils/easyLocalStorage'
 
 const ChatMessages = React.forwardRef((props, ref) => {
   const next = useSelector(state => state.chat.next)
@@ -41,15 +42,30 @@ const ChatMessages = React.forwardRef((props, ref) => {
       } else { return item }
     })
 
+    localStorageSetResponses(messageData.inputKey, userAction.value)
     if(messageData.inputKey === 'userRole') {
       if(userAction.value === 'client') {
         props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
       } else {
         history.push('/signup')
       }
+    } else if(messageData.inputKey == 'visitFor') {
+      const responses = localStorage.getItem('responses') ? JSON.parse(localStorage.getItem('responses')) : {}
+      props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
+    } else if(messageData.inputKey === 'gender') {
+      if(userAction.value === 'question') {
+        props.redoStep(messageData.inputKey)
+      } else {
+        props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
+      }
     } else {
       props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
     }
+  }
+
+  const handChangeAnswer = (data) => {
+    console.log('data', data)
+    props.changeAnswer(data.step.code)
   }
 
   const { conversationFlow } = props
@@ -74,7 +90,7 @@ const ChatMessages = React.forwardRef((props, ref) => {
             <div className='user-message-block'>
             {
               userMessages.map((message, mi) => {
-                return (<UserInputMessage key={`message-${mi}`}>
+                return (<UserInputMessage handChangeAnswer={() => handChangeAnswer({ step, message })} key={`message-${mi}`}>
                   {
                     message.message.type === 'message' ? message.message.text
                     :
@@ -96,7 +112,7 @@ const ChatMessages = React.forwardRef((props, ref) => {
 
 export default ChatMessages
 {/*<UserForm code={step.stepCode}
-  handleNext={this.handleNext.bind(this)}
+  handleNext={this.ha,ndleNext.bind(this)}
   inputs={message.userForm.inputs} 
   formKey={message.userForm.onSuccessAction} 
   setFormData={this.setFormData.bind(this)}

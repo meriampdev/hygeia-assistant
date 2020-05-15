@@ -9,8 +9,10 @@ export default function MessageInput(props) {
   const inputDisabled = useSelector(state => state.chat.inputDisabled)
 
   const onSend = () => {
-    dispatch(userSendAnswer({ inputProperties: inputProperties, value: value }))
-    setValue("")
+    if(!inputDisabled) {
+      dispatch(userSendAnswer({ inputProperties: inputProperties, value: value }))
+      setValue("")
+    }
   }
 
   const onInput = (e) => {

@@ -1,9 +1,15 @@
 .hygeia-buttons {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   .md-btn--text {
-    height: 30px;
+    height: auto;
     margin-right: 5px;
+    text-transform: capitalize;
+    border-radius: 20px;
+    margin-bottom: 2px;
+    word-break: break-word;
+    max-width: 100%;
+    min-height: 30px;
   }
 }

@@ -4,7 +4,7 @@ import TypingIndicator from '../../../components/TypingIndicator'
 import Button from 'react-md/lib/Buttons/Button'
 import { useDispatch } from 'react-redux'
 import { setInputTyping } from '../../../redux'
-
+import { localStorageGet } from '../../../utils/easyLocalStorage'
 import ButtonOption from './HygeiaActionElements/ButtonOption'
 
 export default function Hygeia(props) {
@@ -15,18 +15,37 @@ export default function Hygeia(props) {
   const messageType = (messageData) => {
     switch(messageData.type) {
       case 'message':
-        return <HygeiaMessage text={messageData.text} />
+      {
+        let text = messageData.text
+        if(messageData.messageIsActionDependent) {
+          let responses = localStorageGet('responses', 'object')
+          let actionValue = responses[messageData.actionKey]
+          text = messageData.messageValues[actionValue]
+        }
+        return <HygeiaMessage text={text} />
+      }
       case 'input-type-message':
       {
         dispatch(setInputTyping(messageData))
-        return <HygeiaMessage text={messageData.message} />
+        let text = messageData.message
+        if(messageData.messageIsActionDependent) {
+          let responses = localStorageGet('responses', 'object')
+          let actionValue = responses[messageData.actionKey]
+          text = messageData.messageValues[actionValue]
+        }
+        return <HygeiaMessage text={text} />
       }
       case 'input-dependent':
       {
         let inputKey = messageData.inputKey
-        let responses = localStorage.getItem('responses') ? JSON.parse(localStorage.getItem('responses')) : {}
+        let responses = localStorageGet('responses', 'object')
         let value = responses[inputKey] || ''
         let message =  messageData.text.replace(`{${inputKey}}`, value)
+        if(messageData.messageIsActionDependent) {
+          let responses = localStorageGet('responses', 'object')
+          let actionValue = responses[messageData.actionKey]
+          message = messageData.messageValues[actionValue].replace(`{${inputKey}}`, value)
+        }
         return <HygeiaMessage text={message} />
       }
       case 'button-option':

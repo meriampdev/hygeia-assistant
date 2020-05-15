@@ -1,7 +1,8 @@
 import React from 'react'
 import './user-message.scss'
+import Button from 'react-md/lib/Buttons/Button'
 
-export default function UserInputMessage({ children }) {
+export default function UserInputMessage({ handChangeAnswer, children }) {
   return (
     <div data-padding="symmetrical" className="tpl-response">
     	<div className="user-response-wrapper">
@@ -10,6 +11,7 @@ export default function UserInputMessage({ children }) {
             {children}
           </div>
         </div>
+        <Button onClick={handChangeAnswer} icon secondary>edit</Button>
       </div>
     </div>
   )

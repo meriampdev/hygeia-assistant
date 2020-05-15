@@ -30,3 +30,13 @@
   justify-content: center;
 
 }
+
+.user-response-wrapper {
+  position: relative;
+
+  .md-btn--icon {
+    position: absolute;
+    right: 0;
+    top: -26px;
+  }
+}
