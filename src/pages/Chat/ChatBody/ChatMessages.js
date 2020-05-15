@@ -6,7 +6,7 @@ import UserForm from './UserForm'
 import _ from 'lodash'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { localStorageGet, localStorageSetResponses } from '../../../utils/easyLocalStorage'
+import { localStorageGet, localStorageSetResponses, localStorageRemoveResponse } from '../../../utils/easyLocalStorage'
 
 const ChatMessages = React.forwardRef((props, ref) => {
   const next = useSelector(state => state.chat.next)
@@ -64,7 +64,7 @@ const ChatMessages = React.forwardRef((props, ref) => {
   }
 
   const handChangeAnswer = (data) => {
-    console.log('data', data)
+    localStorageRemoveResponse('gender')
     props.changeAnswer(data.step.code)
   }
 

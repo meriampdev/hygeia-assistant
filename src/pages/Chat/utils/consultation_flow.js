@@ -62,7 +62,7 @@ export default [
             messageIsActionDependent: true,
             actionKey: 'visitFor',
             messageValues: { 
-              child: 'In what state are you located right now?', 
+              child: 'In what State is your child located right now?', 
               me: 'What State are you located now?', 
               someoneElse: 'If you are reporting for another person, please have that person create his/her own profile' 
             },
@@ -159,6 +159,13 @@ export default [
             type: 'input-type-message',
             inputType: 'number',
             inputKey: 'birthYear',
+            messageIsActionDependent: true,
+            actionKey: 'visitFor',
+            messageValues: { 
+              child: "What year was your child born?", 
+              me: "What year were you born",
+              someoneElse: ""
+            },
             message: "What year were you born?",
             inputPrompt: true,
           }
@@ -172,9 +179,27 @@ export default [
       {
         from: 'hygeia',
         messages: [
-          { type: 'message', text: "Great, I have identified medical information for 625,123 people of your age and sex. "}, 
-          { type: 'message', text: "I'll be able to compare your symptoms to theirs."}, 
-          { type: 'message', text: "Would like to provide more information about your symptoms?"}, 
+          { type: 'message', text: "Great, I have identified medical information for 625,123 people of that age and sex. "}, 
+          { 
+            type: 'message', text: "I'll be able to compare your symptoms to theirs.",
+            messageIsActionDependent: true,
+            actionKey: 'visitFor',
+            messageValues: { 
+              child: "I'll be able to compare your child's symptoms to theirs.", 
+              me: "I'll be able to compare your symptoms to theirs.",
+              someoneElse: ""
+            }
+          }, 
+          { 
+            type: 'message', text: "Would like to provide more information about your symptoms?",
+            messageIsActionDependent: true,
+            actionKey: 'visitFor',
+            messageValues: { 
+              child: "Would like to provide more information about your child's symptoms?", 
+              me: "Would like to provide more information about your symptoms?",
+              someoneElse: ""
+            }
+          }, 
           {
             type: 'button-option',
             inputKey: 'didProvideSymptoms',
