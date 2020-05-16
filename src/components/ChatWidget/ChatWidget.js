@@ -1,5 +1,6 @@
 import React from 'react'
 import MessageInput from './MessageInput'
+import SignupMessageInput from './SignupMessageInput'
 
 export default function ChatWidget(props) {
 
@@ -40,7 +41,10 @@ export default function ChatWidget(props) {
             <div className="conversation" style={{background: 'rgb(234, 238, 243)'}}>
               {props.children}
             </div>
-            <MessageInput />
+            {
+              props.signUp ? <SignupMessageInput />
+              : <MessageInput />
+            }
             {/*<div className="tpl-powered-by" style="border-top-color: rgb(238, 238, 238); background: rgb(249, 249, 249);">
               <span>
                 <span style="color: rgb(155, 166, 178);">Powered by</span> 

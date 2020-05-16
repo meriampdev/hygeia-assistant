@@ -1,5 +1,8 @@
 import axios from 'axios'
-import { USER_SEND_ANSER, SET_INPUT_TYPING, TRIGGER_NEXT, DIAGNOSIS, STOP_QUESTIONS } from './types'
+import { USER_SEND_ANSER, SET_INPUT_TYPING, 
+  TRIGGER_NEXT, DIAGNOSIS, STOP_QUESTIONS,
+  SEND_ANSWER
+} from './types'
 import { localStorageSetResponses } from '../../utils/easyLocalStorage'
 import { getLikeSymptoms } from '../../utils/api'
 
@@ -48,4 +51,8 @@ export function startDiagnosis(payload) {
 
 export function stopQuestions(payload) {
   return { type: STOP_QUESTIONS, payload: payload }
+}
+
+export function sendAnswer(payload) {
+  return { type: SEND_ANSWER, payload: payload}
 }

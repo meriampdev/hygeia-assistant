@@ -41,6 +41,10 @@ export default function Diagnosis(props) {
   const [ shouldStop, setShoudStop ] = useState(false)
   const [ conditions, setConditions ] = useState([])
 
+  useEffect(() => {
+    let elmnt = document.getElementById("bottom-of-chat");
+    if(elmnt) {  elmnt.scrollIntoView() }
+  }, [conversation])
 
   useEffect(() => {
     if(should_stop) {
@@ -65,7 +69,6 @@ export default function Diagnosis(props) {
     }))
 
     action.request.then((response) => {
-      console.log('response', response)
       let data = response.data
       let newConversation 
 

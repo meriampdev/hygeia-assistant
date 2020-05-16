@@ -140,10 +140,11 @@ export default function Chatv2HookWrap(props) {
     changeAnswer(stepCode) {
       this.editMode = true
       if(stepCode !== 'selectedFromSuggestion') {
-        this.setState({ startDiagnosis: false })
+        
       } else {
         localStorageRemoveResponse(stepCode)
       }
+      this.setState({ startDiagnosis: false })
       
       let currentIndex = _.findIndex(this.state.conversationFlow, { code: stepCode })
       let newConversationFlow = this.state.conversationFlow.filter((f, i) => i <= currentIndex)
