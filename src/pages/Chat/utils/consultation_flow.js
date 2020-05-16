@@ -1,3 +1,5 @@
+import us_states from './us_states'
+
 export default [
   {
     code: 'userRole',
@@ -57,7 +59,9 @@ export default [
         messages: [
           {
             type: 'input-type-message',
-            inputType: 'text',
+            inputType: 'select',
+            optionType: 'given',
+            options: us_states,
             inputKey: 'stateOfResidence',
             messageIsActionDependent: true,
             actionKey: 'visitFor',
@@ -157,8 +161,11 @@ export default [
         messages: [
           {
             type: 'input-type-message',
-            inputType: 'number',
+            inputType: 'select',
             inputKey: 'birthYear',
+            optionType: 'range',
+            rangeStart: 1890,
+            rangeEnd: 'currentYear',
             messageIsActionDependent: true,
             actionKey: 'visitFor',
             messageValues: { 

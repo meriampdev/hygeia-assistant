@@ -42,6 +42,19 @@
       }
     }
   }
+
+  .MuiFormControl-root {
+    width: 100%
+  }
+  .MuiInput-underline:before {
+    border-bottom: none !important;
+  }
+  .MuiInputBase-input {
+    text-align: center;
+  }
+  .MuiPickersCalendarHeader-switchHeader {
+    max-width: 210px;
+  }
 }
 
 .typing {
@@ -68,5 +81,22 @@
       word-break: break-word;
       max-width: 100%
     }
+  }
+
+  .rrs {
+    width: 100%;
+    .rrs__label {
+      justify-content: center;
+    }
+  }
+}
+
+.MuiDialog-root {
+  z-index: 2147483639 !important;
+  .MuiPickersToolbar-toolbar, .MuiPickersDay-daySelected {
+    background-color: var(--primary-color) !important;
+  }
+  .MuiButton-textPrimary {
+    color: var(--primary-color) !important;
   }
 }

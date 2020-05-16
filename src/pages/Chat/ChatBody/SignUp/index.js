@@ -27,6 +27,7 @@ export default function SignUp(props) {
 
   useEffect(() => {
     let data = userAnswer
+    console.log('userAnswer', userAnswer)
     dispatch(setInputTyping(null)) // set back to null para ma disable ang input
     sendAnswer(null) // set back to null para sure sad ta clear ni sa sunod na input
     if(data) {

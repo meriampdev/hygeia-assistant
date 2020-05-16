@@ -100,14 +100,16 @@ export default [
   {
     code: 'dateOfBirth',
     messages: [
-      { type: 'message-answer-dependent', text: "Alright, {nickName}!", inputKey: 'nickName', skipIfNull: true }, 
-      { type: 'message', text: "When's your date of birth?"}, 
+      { type: 'message', text: "What is your date of birth?"}, 
       {
         type: 'input-type-message',
-        inputType: 'date',
+        inputType: 'datePicker',
         inputKey: 'dateOfBirth',
         message: "",
         inputPrompt: true,
+        optionType: 'range',
+        rangeStart: 1890,
+        rangeEnd: 'currentYear',
       }
     ]
   },
@@ -187,7 +189,7 @@ export default [
       { type: 'message', text: "What City is this located?"}, 
       {
         type: 'input-type-message',
-        inputType: 'text',
+        inputType: 'select',
         inputKey: 'city',
         message: "",
         inputPrompt: true,
@@ -200,7 +202,7 @@ export default [
       { type: 'message', text: "and what State?"}, 
       {
         type: 'input-type-message',
-        inputType: 'text',
+        inputType: 'select',
         inputKey: 'state',
         message: "",
         inputPrompt: true,
