@@ -1,113 +1,306 @@
 export default [
-  { 
-    code: 'sign-up-fillup',
-    conversation: [
-      { 
-        from: 'hygeia', 
-        messages: [
-          { type: 'message', text: "Hi! Some Greetings"}, 
-          { type: 'message', text: 'Join Global Health Way Now' }
-        ]
-      },
-      {
-        from: 'user',
-        userForm: {
-          inputs: [
-            { key: 'firstName', label: 'First Name', inputType: 'text', 
-              validations: [{ required: true }] 
-            },
-            { key: 'lastName', label: 'Last Name', inputType: 'text', 
-              validations: [{ required: true }] 
-            },
-            // { key: 'sssNum', label: 'Social Security Number', required: true, inputType: 'regex-validated',
-            //   validations: [{ regex: 'ssn' }] 
-            // },
-            { key: 'mobileNumber', label: 'Mobile Number', required: true, inputType: 'phone-number', 
-              validations: [{ regex: 'phone-number' }] 
-            },
-            { key: 'dateOfBirth', label: 'Date of Birth', required: true, inputType: 'date',
-              validations: [{ required: true }] 
-            },
-            { key: 'gender', label: 'Gender', required: true, 
-              inputType: 'radio', options: [{ value: 'male', label: 'Male'}, { value: 'female', label: 'Female' }],
-              validations: [{ required: true }] 
-            },
-            { key: 'email', label: 'Email Address', required: true, inputType: 'email',
-              validations: [{ required: true, regex: 'email' }] 
-            }
-          ],
-          onSuccessAction: 'SAVE-SIGN-UP-FORM'
-        }
-      }
-    ]
-  },
   {
-    code: 'sign-up-success',
+    code: 'signUpProceed',
     conversation: [
       {
         from: 'hygeia',
         messages: [
-           { 
-            type: 'text-response-dependent', 
+          { type: 'message', text: "Join Global Health Way Now!"}, 
+          { type: 'message', text: "Would you like to proceed with signing up?"}, 
+          {
+            type: 'button-option',
+            inputKey: 'signUpProceed',
+            inputPrompt: true,
+            inputOptions: [
+              { value: 'yes', label: 'Yes', actionInSentence: '' },
+              { value: 'no', label: 'No', actionInSentence: '' }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'firstName',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "Alright! Let's do this together."}, 
+          { type: 'message', text: "Let's start with your first name"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
             inputKey: 'firstName',
-            valueType: 'text',
-            text: "Hello ${firstName} Thank You for Joining Global Health Way." 
-          },
-          { type: 'message', text: 'Are you a healthcare provider?' }
+            message: "",
+            inputPrompt: true,
+          }
         ]
-      },
-      {
-        from: 'user',
-        userForm: {
-          inputs: [
-            { key: 'userRole', label: '', required: true, 
-              inputType: 'radio', options: [{ value: 1, label: 'Yes' }, { value: 0, label: 'No' }],
-              validations: [{ required: true }] 
-            }
-          ],
-          onSuccessAction: 'PROCEED-REDIRECTS'
-        },
       }
-    ],
+    ]
   },
   {
-    code: 'after-userRole-define',
+    code: 'lastName',
     conversation: [
       {
         from: 'hygeia',
-        messages: [ { type: 'message', text: "Please click on what action you'd like."} ]
-      },
-      {
-        from: 'user',
-        userForm: {
-          inputs: [
-            {
-              key: 'action',
-              inputType: 'boolean-response-dependent',
-              stepCodeDependency: 'sign-up-success',
-              dependencyKey: 'userRole',
-              inputKey: 'decision',
-              valueType: 'binary',
-              scenarios: [
-                { 
-                  type: 'redirect-button', 
-                  buttons: [
-                    { label: 'Get Started', path: null, newChat: true, nextChat: 'consultation_flow' },
-                    { label: 'Go to Home', path: '/home' }
-                  ] 
-                },
-                { 
-                  type: 'redirect-button', 
-                  buttons: [
-                    { label: 'Go to Portal', path: '/provider-portal' },
-                    { label: 'Go to Home', path: '/provider-home' }
-                  ] 
-                }
-              ]
-            }
-          ]
-        }
+        messages: [
+          { type: 'message', text: "Your last name?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'lastName',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
       }
     ]
-  }
+  },
+  {
+    code: 'nickNamePermission',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "That's a really nice name."}, 
+          { type: 'message', text: "Now, may I know your nick name?"}, 
+          {
+            type: 'button-option',
+            inputKey: 'nickNamePermission',
+            inputPrompt: true,
+            inputOptions: [
+              { value: 'yes', label: 'Yes', actionInSentence: '' },
+              { value: 'no', label: 'No', actionInSentence: '' }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'nickName',
+    skippable: true,
+    skipValueKey: 'nickNamePermission',
+    skippableValues: ['no'],
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "Great! What is it?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'nickName',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'dateOfBirth',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "When's your date of birth?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'date',
+            inputKey: 'dateOfBirth',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'mobileNumber',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "What's your mobile number?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'mobileNumber',
+            inputKey: 'mobileNumber',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'email',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "What's your email address?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'email',
+            inputKey: 'email',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'streetAddressLine1',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "What's your street address line 1?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'streetAddressLine1',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'hasStreetLine2',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "Do you have a street address line 2?"}, 
+          {
+            type: 'button-option',
+            inputKey: 'hasStreetLine2',
+            inputPrompt: true,
+            inputOptions: [
+              { value: 'yes', label: 'Yes', actionInSentence: '' },
+              { value: 'no', label: 'No', actionInSentence: '' }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'streetAddressLine2',
+    skippable: true,
+    skipValueKey: 'hasStreetLine2',
+    skippableValues: ['no'],
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "What's your street address line 2?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'streetAddressLine2',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'city',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "What City is this located?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'city',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'state',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "and what State?"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'state',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'zipCodeFirst5',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "What's the Zip Code (First 5)"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'zipCodeFirst5',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'zipCodeNext4',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "What's the Zip Code (Next 4)"}, 
+          {
+            type: 'input-type-message',
+            inputType: 'text',
+            inputKey: 'zipCodeNext4',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'password',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "We're almost done."}, 
+          { type: 'message', text: "We just have to setup your password."}, 
+          {
+            type: 'input-type-password',
+            inputType: 'password',
+            inputKey: 'password',
+            message: "",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
 ]

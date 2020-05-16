@@ -1,37 +1,70 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { userSendAnswer } from '../../redux'
+import { userSendAnswer, stopQuestions } from '../../redux'
+import { localStorageSetResponses } from '../../utils/easyLocalStorage'
+import { getLikeSymptoms } from '../../utils/api'
 
 export default function MessageInput(props) {
   const dispatch = useDispatch()
   const [ value, setValue ] = useState("")
+  const [ suggestionList, setSuggestions ] = useState([])
   const inputProperties = useSelector(state => state.chat.inputProperties)
   const inputDisabled = useSelector(state => state.chat.inputDisabled)
 
   const onSend = () => {
+    console.log('inputProperties', inputProperties)
+    console.log('value', value)
     if(!inputDisabled) {
+      if(inputProperties.inputKey === 'stopQuestions') {
+        dispatch(stopQuestions(true))
+      }
       dispatch(userSendAnswer({ inputProperties: inputProperties, value: value }))
       setValue("")
     }
   }
 
-  const onInput = (e) => {
+  const onKeyPress = (e) => {
     e.persist()
     if(e.key === 'Enter') {
+      if(inputProperties.inputKey === 'stopQuestions') {
+        dispatch(stopQuestions(true))
+      }
       dispatch(userSendAnswer({ inputProperties: inputProperties, value: value }))
       setValue("")
     } 
   }
 
+  const onType = (e) => {
+    e.persist()
+    if(inputProperties.inputKey === 'bodyAreaSelection') {
+      let suggestionList = getLikeSymptoms(value)
+      localStorageSetResponses('bodyAreaSymptoms', suggestionList)
+      setSuggestions(suggestionList)
+    } 
+
+    setValue(e.target.value)
+  }
+
 	return (
     <div className="typing" style={{background: 'rgb(255, 255, 255)', borderTopColor: 'rgb(234, 234, 234)'}}>
+      {
+        suggestionList.length > 0 ?
+          <div className='suggestion-list'>
+            {
+              suggestionList.map((item) => {
+                return <div className='suggestion-item' key={item.id}>{item.common_name}</div>
+              })
+            }
+          </div>
+        : null
+      }
       <input type={inputProperties ? inputProperties.inputType : "text"} 
         maxLength="256"  autoFocus 
         placeholder={inputProperties ? 'Type your answer here.' : ''} style={{color: 'rgb(150, 155, 166)'}}
         disabled={inputDisabled}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyPress={onInput}
+        onChange={onType}
+        onKeyPress={onKeyPress}
       />
       <div className="send-icon" onClick={onSend}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -44,3 +77,4 @@ export default function MessageInput(props) {
     </div>
   )
 }
+

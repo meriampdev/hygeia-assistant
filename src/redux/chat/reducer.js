@@ -1,9 +1,10 @@
-import { USER_SEND_ANSER, SET_INPUT_TYPING, TRIGGER_NEXT } from './types'
+import { USER_SEND_ANSER, SET_INPUT_TYPING, TRIGGER_NEXT, STOP_QUESTIONS } from './types'
 
 const initialState = {
   inputDisabled: true,
   inputProperties: null,
-  next: 0, dataForNext: null
+  next: 0, dataForNext: null,
+  should_stop: false
 };
 
 const chatReducer = (state = initialState, action) => {
@@ -14,6 +15,8 @@ const chatReducer = (state = initialState, action) => {
       return { ...state, userAnswer: true, inputDisabled: true, inputProperties: null }
     case TRIGGER_NEXT:
       return { ...state, next: state.next + 1, dataForNext: action.payload }
+    case STOP_QUESTIONS:
+      return { ...state, should_stop: action.payload }
     default:
       return state;
   }

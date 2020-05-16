@@ -3,10 +3,13 @@ import UserInputMessage from '../../../components/UserInputMessage'
 import HygMessageGroupWrapper from '../../../components/HygeiaMessage/MessageGroupWrapper'
 import HygeiaMessageRenderer from './Hygeia'
 import UserForm from './UserForm'
+import Diagnosis from './Diagnosis'
 import _ from 'lodash'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { localStorageGet, localStorageSetResponses, localStorageRemoveResponse } from '../../../utils/easyLocalStorage'
+import { getLikeSymptoms } from '../../../utils/api'
+import { removeMessageType } from '../../../utils/renderDataHelper'
 
 const ChatMessages = React.forwardRef((props, ref) => {
   const next = useSelector(state => state.chat.next)
@@ -15,6 +18,7 @@ const ChatMessages = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     if(next) {
+      console.log('---next', dataForNext)
       const { inputProperties, value } = dataForNext
       props.startNext(props.conversationFlow, inputProperties.inputKey, value, value)
     }
@@ -28,19 +32,7 @@ const ChatMessages = React.forwardRef((props, ref) => {
 
   const handleHygeiaButtonOption = ({ userAction, messageData, messageIndex }) => {
     // remove buttons from render
-    let newConversationFlow = props.conversationFlow.map((item) => {
-      if(item.code === messageData.inputKey) {
-        // let newconversation = item.conversation.filter((f) => f.message.type !== 'button-option')
-        let newconversation = item.conversation.map((f) => {
-          if(f.message.type === 'button-option') {
-            return { ...f, dontRender: true }
-          } else {
-            return f
-          }
-        })
-        return { ...item, conversation: newconversation }
-      } else { return item }
-    })
+    let newConversationFlow = removeMessageType(props.conversationFlow, 'button-option', messageData.inputKey)
 
     localStorageSetResponses(messageData.inputKey, userAction.value)
     if(messageData.inputKey === 'userRole') {
@@ -59,6 +51,25 @@ const ChatMessages = React.forwardRef((props, ref) => {
         props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
       }
     } else {
+      console.log('messageData', messageData)
+      console.log('userAction', userAction)
+      props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
+    }
+  }
+
+  const handleRequestTriggerButtons = ({ userAction, messageData, messageIndex }) => {
+    console.log('handleRequestTriggerButtons', messageData)
+    console.log('userAction', userAction)
+
+    if(messageData.inputKey === 'bodyAreaSelection') {
+      let newConversationFlow = removeMessageType(props.conversationFlow, 'request-trigger-buttons', messageData.inputKey)
+      let suggestions = getLikeSymptoms(userAction.value)
+      localStorageSetResponses('bodyAreaSymptoms', suggestions)
+      props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
+    } else {
+      let newConversationFlow = removeMessageType(props.conversationFlow, 'swipeable-list', messageData.inputKey)
+      console.log('messageData', messageData)
+      console.log('userAction', userAction)
       props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
     }
   }
@@ -83,6 +94,7 @@ const ChatMessages = React.forwardRef((props, ref) => {
                   <HygeiaMessageRenderer key={`message-${mi}`} 
                     {...message} messageIndex={mi}
                     handleHygeiaButtonOption={handleHygeiaButtonOption}
+                    handleRequestTriggerButtons={handleRequestTriggerButtons}
                   /> : null)
               })
             }
@@ -104,6 +116,11 @@ const ChatMessages = React.forwardRef((props, ref) => {
             </div>
           </div>)
         })
+      }
+      {
+        props.startDiagnosis ?
+          <Diagnosis />
+        : null
       }
       <div id="bottom-of-chat" style={{ visibility: 'hidden', height: '20px'}}></div>
     </div>

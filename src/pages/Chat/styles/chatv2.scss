@@ -11,5 +11,9 @@
     word-break: break-word;
     max-width: 100%;
     min-height: 30px;
+
+   &.selected {
+      background: #00B0FF;
+    }
   }
 }

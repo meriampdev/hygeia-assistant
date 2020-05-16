@@ -5,7 +5,11 @@ import Button from 'react-md/lib/Buttons/Button'
 import { useDispatch } from 'react-redux'
 import { setInputTyping } from '../../../redux'
 import { localStorageGet } from '../../../utils/easyLocalStorage'
+// import { localStorageGet } from '../../../utils/api'
 import ButtonOption from './HygeiaActionElements/ButtonOption'
+import RequestDataButtons from './HygeiaActionElements/RequestDataButtons'
+import BodyModel from './HygeiaActionElements/BodyModel'
+import SwipeableList from './HygeiaActionElements/SwipeableList'
 
 export default function Hygeia(props) {
   const dispatch = useDispatch()
@@ -41,6 +45,7 @@ export default function Hygeia(props) {
         let responses = localStorageGet('responses', 'object')
         let value = responses[inputKey] || ''
         let message =  messageData.text.replace(`{${inputKey}}`, value)
+        console.log('messageData', messageData)
         if(messageData.messageIsActionDependent) {
           let responses = localStorageGet('responses', 'object')
           let actionValue = responses[messageData.actionKey]
@@ -52,24 +57,26 @@ export default function Hygeia(props) {
       {
         return <ButtonOption {...props} />
       }
-      case 'text-response-dependent':
+      case 'request-trigger-buttons':
       {
-        let value = dependencyFormData ? dependencyFormData[messageData.inputKey] : ''
-        let messageText = messageData.text.replace('${'+`${messageData.inputKey}`+'}', value)
-        return <HygeiaMessage text={messageText} />
+        let newProps = { ...props, handleHygeiaButtonOption: props.handleRequestTriggerButtons }
+        return <ButtonOption {...newProps} />
       }
-      case 'boolean-response-dependent':
+      case 'request-data-buttons':
       {
-        let value = dependencyFormData ? dependencyFormData[messageData.inputKey] : 0
-        let scenario = messageData.scenarios[value]
-        return messageType(scenario)
+        let newProps = { ...props, handleHygeiaButtonOption: props.handleRequestTriggerButtons }
+        console.log('request-data-buttons', props)
+        return <RequestDataButtons {...newProps} />
       }
-      case 'redirect-button':
+      case 'swipeable-list':
       {
-        let elements = messageData.buttons.map((btn, i) => {
-          return <Button key={`btn-${i}`} variant="contained" color="primary" disableElevation>{btn.label}</Button>
-        })
-        return <HygeiaMessage text={elements} />
+        let newProps = { ...props, handleHygeiaButtonOption: props.handleRequestTriggerButtons }
+        console.log('request-data-buttons', props)
+        return <SwipeableList {...newProps} />
+      }
+      case 'body-model':
+      {
+        return <BodyModel />
       }
       default: return null
     }

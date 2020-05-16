@@ -25,4 +25,48 @@
       height: 100%;
     }
   }
+
+  .single-question-options {
+    .md-selection-control-container {
+      .md-selection-control-label {
+        font-size: 15px;
+        font-family: 'Work Sans', sans-serif;
+      }
+      .md-btn--icon {
+        height: 30px;
+        width: 30px;
+        padding: 3px;
+        .md-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+.typing {
+
+  .suggestion-list {
+    position: absolute;
+    bottom: 49px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    color: #FFFF;
+    width: 90%;
+    left: 17px;
+    max-height: 300px;
+    overflow: auto;
+    background: #FFF;
+
+    .suggestion-item {
+      margin: 0 10px;
+      padding: 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      overflow: auto;
+      color: #000;
+      word-break: break-word;
+      max-width: 100%
+    }
+  }
 }

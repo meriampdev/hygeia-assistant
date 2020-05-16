@@ -215,30 +215,155 @@ export default [
     ]
   },
   {
-    code: 'symptoms',
+    code: 'bodyAreaSelection',
     conversation: [
       {
         from: 'hygeia',
         messages: [
           { type: 'message', text: "Which part of the body is affected?"}, 
           {
-            type: 'button-option',
-            inputKey: 'symptoms',
+            type: 'request-trigger-buttons',
+            apiEndpoint: '',
+            apiDataKey: null,
+            inputKey: 'bodyAreaSelection',
+            resultKey: 'bodyAreaSymptoms',
             message: "Which part of the body is affected?",
             inputPrompt: true,
             inputOptions: [
-              { value: 'head', label: 'Head or Brain' },
-              { value: 'eye', label: 'Eye' },
-              { value: 'ear', label: 'Ear' },
-              { value: 'nose', label: 'Nose' },
-              { value: 'mouth', label: 'Mouth or Teeth' },
-              { value: 'neck', label: 'Neck or Back' },
-              { value: 'chest', label: 'Chest' },
-              { value: 'arm', label: 'Arm or Hand' },
-              { value: 'abdomen', label: 'Abdomen' },
-              { value: 'leg', label: 'Leg or Foot' },
+              { 
+                value: [
+                  'head', 'fever', 'conscious', 'memory', 'dizzy'
+                ], 
+                label: 'Head'
+              },
+              { 
+                value: [
+                  'hair'
+                ], 
+                label: 'Hair'
+              },
+              { 
+                value: [
+                  'face', 'skin', 'blackheads'
+                ], 
+                label: 'Face'
+              },
+              { 
+                value: [
+                  'eye', 'vision', 'pupils', 'nystagmus', 'eyelid', ''
+                ], 
+                label: 'Eye' 
+              },
+              { 
+                value: [ 'ear', 'hear', 'clogged', 'pressure'], 
+                label: 'Ear' 
+              },
+              { 
+                value: [
+                  'nose', 'throat', 'nasal', 'snoring', 'snore', 'sneeze', 'smell', 'mucus'
+                ], 
+                label: 'Nose' 
+              },
+              { 
+                value: [
+                  'mouth', 'breath', 'tooth', 'bite', 'biting', 'chew', 'chewing', 'gum', 'teeth', 'toungue',
+                  'cough', 'snoring', 'vomiting', 'appetite', 'thirst', 'tonsils'
+                ], 
+                label: 'Mouth or Teeth' 
+              },
+              { 
+                value: [
+                  'throat', 'swallow', 'swallowing', 'cough', 'neck', 'hawking', 'hoarse', 'whistling', 'breathing',
+                  'mucus', 'voice', 'itchy throat', 'lymph node'
+                ], 
+                label: 'Neck or Back' 
+              },
+              { 
+                value: [
+                  'chest', 'upper limb', 'heart', 'heartburn', 'palpitations', 'cough', 'breath', 'gynecomastia'
+                ], 
+                label: 'Chest' 
+              },
+              { 
+                value: [
+                  'arm', 'hand', 'limb', 'shoulder', 'joint', 'extremities', 'spasms', 'forearm', 'elbow', 'wrist',
+                  'finger', 'nail', 'skin', 'muscles'
+                ], 
+                label: 'Arm or Hand' 
+              },
+              { 
+                value: [
+                  'abdomen', 'stomach', 'heartburn', 'bloat', 'bloating', 'vomit', 'digest', 'indigestion', 'weight',
+                  'cramps', 'period', 'constipation', 'diarrhea', 'sick', 'bowel', 'black stool', 'stool'
+                ], 
+                label: 'Abdomen' 
+              },
+              { 
+                value: [
+                  'limb', 'thigh', 'joint', 'hip', 'lower back', 'buttock', 'leg'
+                ], 
+                label: 'Thigh' 
+              },
+              {
+                value: [
+                  'knee', 'creak', 'walk', 'limp', ''
+                ],
+                label: 'Knee'
+              },
+              {
+                value: [
+                  'lower limb', 'calf', 'lower leg', 'leg', 'calve'
+                ],
+                label: 'Lower Leg'
+              },
+              {
+                value: [
+                  'foot', 'toe', 'ankle', 'feet', 'nail'
+                ],
+                label: 'Foot'
+              },
+              {
+                value: [
+                  'vaginal', 'intercourse', 'sex', 'menstrual', 'period', 'frequent urination', 'urinating', 'urine',
+                  'urinary', 'crotch', 'genital', 'penis'
+                ],
+                label: 'Sexual Organs'
+              }
             ]
           }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'selectedFromSuggestion',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "Please select anything that closely describes your condition."}, 
+          { type: 'message', text: "I will have follow up questions based on what you will select."}, 
+          {
+            type: 'swipeable-list',
+            dataKey: 'bodyAreaSymptoms',
+            valueKey: 'id',
+            labelKey: 'common_name',
+            inputType: 'text',
+            inputKey: 'selectedFromSuggestion',
+            message: "Describe your symptom",
+            inputPrompt: true,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    code: 'diagnosis',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "Starting diagnosis..."}, 
         ]
       }
     ]

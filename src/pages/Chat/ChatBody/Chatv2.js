@@ -4,15 +4,20 @@ import consultation_flow from '../utils/consultation_flow'
 import ChatMessages from './ChatMessages'
 import _ from 'lodash'
 import '../styles/chatv2.scss'
+import '../styles/symptoms-model.scss'
 import { localStorageGet, localStorageSetResponses, localStorageRemoveResponse } from '../../../utils/easyLocalStorage'
+import { getLikeSymptoms } from '../../../utils/api'
 import { useDispatch } from 'react-redux'
-import { setInputTyping } from '../../../redux'
+import { setInputTyping, stopQuestions } from '../../../redux'
 
 export default function Chatv2HookWrap(props) {
   const dispatch = useDispatch()
 
   const allowInputTyping = (messageData) => {
     dispatch(setInputTyping(messageData))
+    if(messageData.inputKey === 'stopQuestions') {
+      dispatch(stopQuestions(false))
+    }
   }
 
   class Chatv2 extends React.Component {
@@ -24,6 +29,7 @@ export default function Chatv2HookWrap(props) {
       this.conversation = consultation_flow
       this.runConversation(0)
       this.editMode = false
+      // console.log('getLikeSymptoms', getLikeSymptoms('chronic pain the head'))
     }
 
     runConversation(conversationIndex) {
@@ -135,7 +141,11 @@ export default function Chatv2HookWrap(props) {
 
     changeAnswer(stepCode) {
       this.editMode = true
-      localStorageRemoveResponse(stepCode)
+      if(stepCode !== 'selectedFromSuggestion') {
+        this.setState({ startDiagnosis: false })
+      } else {
+        localStorageRemoveResponse(stepCode)
+      }
       
       let currentIndex = _.findIndex(this.state.conversationFlow, { code: stepCode })
       let newConversationFlow = this.state.conversationFlow.filter((f, i) => i <= currentIndex)
@@ -181,11 +191,15 @@ export default function Chatv2HookWrap(props) {
           return { ...item, conversation: newConversation }
         } else return item
       })
-
       this.setState({ conversationFlow: newConversationFlow })
-
       let nextIndex = currentIndex+1
-      this.runConversation(nextIndex)
+      let nextBlock = this.conversation[nextIndex]
+      if(nextBlock.code === 'diagnosis') {
+        allowInputTyping({ inputType: 'text', inputKey: 'stopQuestions' })
+        this.setState({ startDiagnosis: true })
+      } else {
+        this.runConversation(nextIndex)
+      }
     }
 
     render() {
@@ -195,6 +209,7 @@ export default function Chatv2HookWrap(props) {
           startNext={this.startNext.bind(this)} 
           redoStep={this.redoStep.bind(this)}
           changeAnswer={this.changeAnswer.bind(this)}
+          startDiagnosis={this.state.startDiagnosis}
         />
       )
     }

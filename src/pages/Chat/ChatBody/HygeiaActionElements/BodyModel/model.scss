@@ -1,0 +1,16 @@
+.model-body-container {
+  position: absolute;
+  background: #FFF;
+  top: 10%;
+  left: 5%;
+  height: 80%;
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px 2px rgba(0,0,0,0.1);
+
+  .model-female-front {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+  }
+}

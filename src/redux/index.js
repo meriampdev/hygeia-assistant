@@ -1,7 +1,8 @@
 import { login } from './auth/actions';
-import { userSendAnswer, setInputTyping } from './chat/actions';
+import { userSendAnswer, setInputTyping, startDiagnosis, stopQuestions } from './chat/actions';
 
 export {
   login,
-  userSendAnswer, setInputTyping
+  userSendAnswer, setInputTyping,
+  startDiagnosis, stopQuestions
 };
