@@ -18,9 +18,10 @@ const ChatMessages = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     if(next) {
-      console.log('---next', dataForNext)
       const { inputProperties, value } = dataForNext
-      props.startNext(props.conversationFlow, inputProperties.inputKey, value, value)
+      if(inputProperties.inputKey !== 'stopQuestions') {
+        props.startNext(props.conversationFlow, inputProperties.inputKey, value, value)
+      }
     }
     
   }, [next])
@@ -51,15 +52,11 @@ const ChatMessages = React.forwardRef((props, ref) => {
         props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
       }
     } else {
-      console.log('messageData', messageData)
-      console.log('userAction', userAction)
       props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
     }
   }
 
   const handleRequestTriggerButtons = ({ userAction, messageData, messageIndex }) => {
-    console.log('handleRequestTriggerButtons', messageData)
-    console.log('userAction', userAction)
 
     if(messageData.inputKey === 'bodyAreaSelection') {
       let newConversationFlow = removeMessageType(props.conversationFlow, 'request-trigger-buttons', messageData.inputKey)
@@ -68,8 +65,6 @@ const ChatMessages = React.forwardRef((props, ref) => {
       props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
     } else {
       let newConversationFlow = removeMessageType(props.conversationFlow, 'swipeable-list', messageData.inputKey)
-      console.log('messageData', messageData)
-      console.log('userAction', userAction)
       props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
     }
   }
@@ -119,7 +114,7 @@ const ChatMessages = React.forwardRef((props, ref) => {
       }
       {
         props.startDiagnosis ?
-          <Diagnosis />
+          <Diagnosis continueAfterDiagnosis={props.continueAfterDiagnosis} />
         : null
       }
       <div id="bottom-of-chat" style={{ visibility: 'hidden', height: '20px'}}></div>

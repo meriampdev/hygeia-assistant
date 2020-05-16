@@ -31,8 +31,8 @@ export default [
             type: 'message',
             messageIsActionDependent: true,
             actionKey: 'userRole',
-            messageValues: { client: 'If it is a medical emergency, please contact your local emergency services.', provider: '' },
-            message: "If it is a medical emergency, please contact your local emergency services."
+            messageValues: { client: 'If this is a medical emergency, please contact your local emergency services.', provider: '' },
+            message: "If this is a medical emergency, please contact your local emergency services."
           },
           { type: 'message', text: 'Who is this visit for?' },
           {
@@ -63,7 +63,7 @@ export default [
             actionKey: 'visitFor',
             messageValues: { 
               child: 'In what State is your child located right now?', 
-              me: 'What State are you located now?', 
+              me: 'In what State are you located now?', 
               someoneElse: 'If you are reporting for another person, please have that person create his/her own profile' 
             },
             message: "What State are you located now?",
@@ -380,7 +380,7 @@ export default [
             inputPrompt: true,
             message: "",
             inputOptions: [
-              { value: true, label: 'Speak with a healthcare provider' }
+              { value: true, label: 'Connect with a healthcare provider' }
             ]
           }
         ]

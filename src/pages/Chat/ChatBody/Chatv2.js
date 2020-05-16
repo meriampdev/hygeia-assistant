@@ -29,7 +29,6 @@ export default function Chatv2HookWrap(props) {
       this.conversation = consultation_flow
       this.runConversation(0)
       this.editMode = false
-      // console.log('getLikeSymptoms', getLikeSymptoms('chronic pain the head'))
     }
 
     runConversation(conversationIndex) {
@@ -100,7 +99,6 @@ export default function Chatv2HookWrap(props) {
               return
             }
           }
-          
           await this.bufferedMessage(messages[messageIndex])
           if(this.runMessagesTimeout) {
             clearTimeout(this.runMessagesTimeout)
@@ -202,6 +200,12 @@ export default function Chatv2HookWrap(props) {
       }
     }
 
+    continueAfterDiagnosis() {
+      let currentIndex = _.findIndex(this.conversation, { code: 'diagnosis' })
+      let nextIndex = currentIndex+1
+      this.runConversation(nextIndex)
+    }
+
     render() {
       const { conversationFlow } = this.state
       return (
@@ -210,6 +214,7 @@ export default function Chatv2HookWrap(props) {
           redoStep={this.redoStep.bind(this)}
           changeAnswer={this.changeAnswer.bind(this)}
           startDiagnosis={this.state.startDiagnosis}
+          continueAfterDiagnosis={this.continueAfterDiagnosis.bind(this)}
         />
       )
     }

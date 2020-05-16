@@ -2,16 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import UserInputMessage from '../../../../components/UserInputMessage'
 import HygMessageGroupWrapper from '../../../../components/HygeiaMessage/MessageGroupWrapper'
+import HygeiaMessage from '../../../../components/HygeiaMessage'
 import { localStorageGet, localStorageSetResponses, localStorageRemoveResponse } from '../../../../utils/easyLocalStorage'
 import { removeMessageType } from '../../../../utils/renderDataHelper'
 import { startDiagnosis } from '../../../../redux'
 import HygeiaQuestions from './HygeiaQuestions'
+import Button from 'react-md/lib/Buttons/Button'
 
 export default function Diagnosis(props) {
   const dispatch = useDispatch()
   // this for user initiated stoppage
   const should_stop = useSelector(state => state.chat.should_stop)
   const userMessage = useSelector(state => state.chat.dataForNext)
+
+  const [ continuation, setContinuation ] = useState([])
+  const [ diagnosisDone, setDiagnosisDone ] = useState(false)
 
   let responses = localStorageGet('responses', 'object')
   let SEX = responses.gender || 'female'
@@ -54,6 +59,7 @@ export default function Diagnosis(props) {
     ]
 
     setConversation(addQuestionToConvo)
+    setDiagnosisDone(false)
     let action = dispatch(startDiagnosis({
       "sex": SEX, "age": AGE, "evidence":evidence
     }))
@@ -153,6 +159,50 @@ export default function Diagnosis(props) {
     setEvidence(newEvidence)
     setConversation(newConversation)
   }
+
+  const onContinue = () => {
+    setDiagnosisDone(true)
+    setContinuation([{ type: 'question', questionType: 'continuation-buttons', text: '', lineID: 0 }])
+    setTimeout(function() {
+      setContinuation([{ 
+        type: 'question', questionType: 'continuation-buttons', 
+        options: [{ text: 'Connect with a healthcare provider', handler: connectWithProvider }],
+        lineID: 0 
+      }])
+    }, 1000);
+  }
+
+  const connectWithProvider = () => {
+    let uanswer = [ ...continuation, { type: 'answer', text: 'Connect with a healthcare provider' }]
+    setContinuation(uanswer)
+   
+    let cc = [ ...uanswer, 
+      { type: 'question', questionType: 'continuation-buttons', text: '', lineID: uanswer.length,
+        options: null
+      }]
+    setContinuation(cc)
+    setTimeout(function() {
+      setContinuation([ ...uanswer, 
+        { type: 'question', questionType: 'message', text: "How would you like to pay?", lineID: uanswer.length },
+        { type: 'question', questionType: 'continuation-buttons', text: '', lineID: uanswer.length+1,
+          options: [
+            { text: 'Use my insurance', handler: () => handleEnd('Use my insurance') },
+            { text: 'Continue without insurance', handler: () => handleEnd('Continue without insurance') }
+          ]
+        }
+      ])
+    }, 1000);
+  }
+
+  const handleEnd = (text) => {
+    setContinuation(prevState => [ ...prevState, { type: 'answer', text: text }])
+  }
+
+  let diagnosisMessage = ''
+  if(should_stop || shouldStop) {
+    let responses = localStorageGet('responses', 'object')
+    diagnosisMessage = `Hi ${responses.patientName}, these are the probable conditions based on your answers.`
+  }
   
 	return (
     <div>
@@ -183,7 +233,7 @@ export default function Diagnosis(props) {
         should_stop || shouldStop ?
           <HygMessageGroupWrapper >
             <HygeiaQuestions 
-              type='question' questionType='message' text='These are the probable conditions.'
+              type='question' questionType='message' text={diagnosisMessage}
               containerProps={{
                 selectSingleOption: selectSingleOption,
                 selectGroupSingle: selectGroupSingle
@@ -203,7 +253,36 @@ export default function Diagnosis(props) {
                 /> 
               })
             }
+            <HygeiaMessage>
+              <div className='hygeia-buttons'>
+                <Button 
+                  onClick={onContinue}
+                  className='button'
+                  flat primary swapTheming 
+                >
+                  Continue
+                </Button>
+              </div>
+            </HygeiaMessage>
           </HygMessageGroupWrapper>
+        : null
+      }
+      {
+        diagnosisDone && continuation.length > 0 ?
+          continuation.map((item, mi) => {
+            return (
+              item.type === 'question' ?
+                <HygMessageGroupWrapper key={`question-${mi}`} >
+                  {
+                    !item.dontRender ?
+                      <HygeiaQuestions {...item} /> 
+                    : null
+                  }
+                </HygMessageGroupWrapper>
+              :  <UserInputMessage noEdit={true} key={`user-answer-${mi}`}>{item.text}</UserInputMessage>
+
+            )
+          })
         : null
       }
     </div>

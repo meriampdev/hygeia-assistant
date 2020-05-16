@@ -4,6 +4,7 @@ import TypingIndicator from '../../../../components/TypingIndicator'
 import SingleQuestion from './SingleQuestion'
 import GroupSingle from './GroupSingle'
 import GroupMultiple from './GroupMultiple'
+import Button from 'react-md/lib/Buttons/Button'
 
 export default function HygeiaQuestion(props) {
   const [ component, setComponent ] = useState(<TypingIndicator />)
@@ -23,6 +24,25 @@ export default function HygeiaQuestion(props) {
       case 'group_multiple':
       {
         return <GroupMultiple {...question} {...props} />
+      }
+      case 'continuation-buttons':
+      {
+        return question.options ? <HygeiaMessage>
+          <div className='hygeia-buttons'>
+            {
+              question.options.map((opt, i) => {
+                return (<Button key={`option-${i}`}
+                    onClick={opt.handler}
+                    className='button'
+                    flat primary swapTheming 
+                  >
+                    {opt.text}
+                  </Button>)
+              })
+            }
+            
+          </div>
+        </HygeiaMessage> : <TypingIndicator />
       }
       default: return null
     }
