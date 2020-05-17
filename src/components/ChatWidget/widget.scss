@@ -44,7 +44,7 @@
   }
 
   .MuiFormControl-root {
-    width: 100%
+    width: 95%
   }
   .MuiInput-underline:before {
     border-bottom: none !important;
@@ -52,13 +52,18 @@
   .MuiInputBase-input {
     text-align: center;
   }
-  .MuiPickersCalendarHeader-switchHeader {
-    max-width: 210px;
-  }
+  
 }
 
 .typing {
-
+  input.error-field {
+    color: red !important;
+    font-weight: bold;
+  }
+  input.valid-field {
+    color: green !important;
+    font-weight: bold;
+  }
   .suggestion-list {
     position: absolute;
     bottom: 49px;
@@ -89,6 +94,27 @@
       justify-content: center;
     }
   }
+
+  .PhoneInput {
+    width: 100%;
+
+    &.error-field {
+      input {
+        color: red;
+        font-weight: bold;
+      }
+    }
+    &.valid-phone {
+      input {
+        color: green;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .MuiInputBase-root {
+    flex-direction: row-reverse;
+  }
 }
 
 .MuiDialog-root {
@@ -98,5 +124,9 @@
   }
   .MuiButton-textPrimary {
     color: var(--primary-color) !important;
+  }
+
+  .MuiPickersCalendarHeader-switchHeader {
+    max-width: 210px;
   }
 }

@@ -1,3 +1,5 @@
+import us_states from './us_states'
+
 export default [
   {
     code: 'signUpProceed',
@@ -119,7 +121,7 @@ export default [
       { type: 'message', text: "What's your mobile number?"}, 
       {
         type: 'input-type-message',
-        inputType: 'mobileNumber',
+        inputType: 'phoneNumber',
         inputKey: 'mobileNumber',
         message: "",
         inputPrompt: true,
@@ -203,6 +205,8 @@ export default [
       {
         type: 'input-type-message',
         inputType: 'select',
+        optionType: 'given',
+        options: us_states,
         inputKey: 'state',
         message: "",
         inputPrompt: true,
@@ -215,7 +219,8 @@ export default [
       { type: 'message', text: "What's the Zip Code (First 5)"}, 
       {
         type: 'input-type-message',
-        inputType: 'text',
+        inputType: 'number-with-length',
+        inputLength: 5,
         inputKey: 'zipCodeFirst5',
         message: "",
         inputPrompt: true,
@@ -230,22 +235,27 @@ export default [
         type: 'input-type-message',
         inputType: 'text',
         inputKey: 'zipCodeNext4',
+        inputType: 'number-with-length',
+        inputLength: 4,
         message: "",
         inputPrompt: true,
       }
     ]
   },
   {
-    code: 'password',
+    code: 'done',
     messages: [
-      { type: 'message', text: "We're almost done."}, 
-      { type: 'message', text: "We just have to setup your password."}, 
+      { type: 'message', text: "And we're done!"}, 
+      { type: 'message', text: "We've sent you an email with your temporary password."}, 
+      { type: 'message', text: "You will be prompted to change password after you log in for the first time."},
       {
-        type: 'input-type-password',
-        inputType: 'password',
-        inputKey: 'password',
-        message: "",
+        type: 'button-option',
+        inputKey: 'afterAction',
         inputPrompt: true,
+        inputOptions: [
+          { value: 'yes', label: 'Go back to Home Page.', action: { route: '/', actionType: 'redirect' } },
+          { value: 'yes', label: 'Click here to sign in.', action: { route: '/login', actionType: 'redirect' } }
+        ]
       }
     ]
   }

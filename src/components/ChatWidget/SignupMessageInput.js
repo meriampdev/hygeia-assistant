@@ -5,27 +5,29 @@ import { localStorageSetResponses } from '../../utils/easyLocalStorage'
 import { getLikeSymptoms } from '../../utils/api'
 import moment from 'moment'
 import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers'
+import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers'
 import 'react-responsive-select/dist/ReactResponsiveSelect.css'
 import RRS from 'react-responsive-select'
 import _ from 'lodash'
+import 'react-phone-number-input/style.css'
+import PhoneInput, { formatPhoneNumber } from 'react-phone-number-input'
+import validationHelper from '../FormFields/validationHelper'
 
 export default function MessageInput(props) {
   const dispatch = useDispatch()
+  const inputRef = React.createRef()
   const [ value, setValue ] = useState("")
+  const [ inputClass, setInputClass ] = useState("")
   const [ suggestionList, setSuggestions ] = useState([])
   const inputProperties = useSelector(state => state.chat.inputProperties)
   const inputDisabled = useSelector(state => state.chat.inputDisabled)
   const [ options, setOptions ] = useState(null)
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date("January 31, 1900 11:13:00"));
 
-  const handleDateChange = (date) => {
+  const handleDateChange = (date, e) => {
     let selectedDate = moment(date).format('YYYY-MM-DD')
-    dispatch(sendAnswer({ ...inputProperties, value: selectedDate }))
+    setSelectedDate(selectedDate)
+    // dispatch(sendAnswer({ ...inputProperties, value: selectedDate }))
   };
 
   useEffect(() => {
@@ -43,39 +45,79 @@ export default function MessageInput(props) {
           })
           setOptions(optionList)
         } else if(inputProperties.optionType === 'given') {
-          setOptions(inputProperties.options)
+          setOptions([ { text: 'Select an Option', value: '' },...inputProperties.options])
         }
       }
+      if(inputRef && inputRef.current) inputRef.current.focus()
     }
   }, [inputProperties])
 
   const onSend = () => {
-    dispatch(sendAnswer({ ...inputProperties, value: value }))
-    setValue("")
+    let sendValue = value 
+    if(inputProperties.inputType === 'datePicker') {
+      if(!moment(selectedDate).isValid()) return
+      sendValue = moment(selectedDate).format('MM/DD/yyyy')
+    } else if(inputProperties.inputType === 'phoneNumber') {
+      let formatted = formatPhoneNumber(value)
+      let evalPhone = validationHelper('us-phone-number-formatted', formatted)
+      if(evalPhone.isError) {
+        sendValue = null
+      } else { sendValue = formatted }
+    } else {
+      let evalInput = validationHelper(inputProperties.inputType, value, inputProperties.inputLength)
+      if(!evalInput.noRule && evalInput.isError) {
+        sendValue = null
+      } 
+    }
+    if(sendValue) {
+      dispatch(sendAnswer({ ...inputProperties, value: sendValue }))
+      setInputClass("")
+      setValue("")
+    }
   }
 
   const onKeyPress = (e) => {
     e.persist()
     if(e.key === 'Enter') {
-      dispatch(sendAnswer({ ...inputProperties, value: value }))
-      setValue("")
+      onSend()
     } 
   }
 
   const onType = (e) => {
     e.persist()
+    let evalInput = validationHelper(inputProperties.inputType, e.target.value ,inputProperties.inputLength)
+    if(!evalInput.noRule) {
+      if(evalInput.isError) {
+        setInputClass("error-field")
+      } else {
+        setInputClass("valid-field")
+      }
+    }
     setValue(e.target.value)
+  }
+
+  const phoneInputChange = (val) => {
+    let formatted = formatPhoneNumber(val)
+    let evalPhone = validationHelper('us-phone-number-formatted', formatted)
+    if(evalPhone.isError) {
+      setInputClass("error-field")
+    } else {
+      setInputClass("valid-phone")
+    }
+    setValue(val)
   }
 
   let hideSendIcon = false
   let inputElement = (
-      <input type={inputProperties ? inputProperties.inputType : "text"} 
+      <input 
         maxLength="256"  autoFocus 
         placeholder={inputProperties ? 'Type your answer here.' : ''} style={{color: '#000'}}
         disabled={inputProperties === null}
         value={value}
         onChange={onType}
         onKeyPress={onKeyPress}
+        ref={inputRef}
+        className={inputClass}
       />
     )
   if(inputProperties) {
@@ -95,14 +137,28 @@ export default function MessageInput(props) {
             id="date-picker-dialog"
             label=""
             format="MM/dd/yyyy"
+            value={selectedDate}
             onChange={handleDateChange}
+            onKeyPress={onKeyPress}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}
           />
         </MuiPickersUtilsProvider>
       )
-      hideSendIcon = true
+      hideSendIcon = false
+    } else if(inputProperties.inputType === 'phoneNumber') {
+      inputElement = (
+        <PhoneInput
+          placeholder="Enter phone number"
+          value={value}
+          onChange={phoneInputChange}
+          onKeyPress={onKeyPress}
+          defaultCountry="US"
+          className={inputClass}
+        />
+      )
+      hideSendIcon = false
     }
   }
 
@@ -111,7 +167,7 @@ export default function MessageInput(props) {
       {inputElement}
       {
         !hideSendIcon ? 
-          <div className="send-icon" style={{pointerEvents: !value ? 'none': ''}} onClick={onSend}>
+          <div className="send-icon" style={{pointerEvents: !value && !selectedDate ? 'none': ''}} onClick={onSend}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 fill="#00796b"

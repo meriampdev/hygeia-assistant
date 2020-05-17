@@ -9,6 +9,7 @@ import _ from 'lodash'
 
 export default function MessageInput(props) {
   const dispatch = useDispatch()
+  const inputRef = React.createRef()
   const [ value, setValue ] = useState("")
   const [ options, setOptions ] = useState(null)
   const [ suggestionList, setSuggestions ] = useState([])
@@ -33,6 +34,7 @@ export default function MessageInput(props) {
           setOptions(inputProperties.options)
         }
       }
+      if(inputRef && inputRef.current) inputRef.current.focus()
     }
   }, [inputProperties])
 
@@ -87,6 +89,7 @@ export default function MessageInput(props) {
             value={value}
             onChange={onType}
             onKeyPress={onKeyPress}
+            ref={inputRef}
           />
       }
       {

@@ -66,8 +66,8 @@ export default [
             messageIsActionDependent: true,
             actionKey: 'visitFor',
             messageValues: { 
-              child: 'In what State is your child located right now?', 
-              me: 'In what State are you located now?', 
+              child: 'In what State is your child physically located right now?', 
+              me: 'In what State are you physically located right now?', 
               someoneElse: 'If you are reporting for another person, please have that person create his/her own profile' 
             },
             message: "What State are you located now?",
@@ -87,7 +87,10 @@ export default [
             type: 'message',
             messageIsActionDependent: true,
             actionKey: 'visitFor',
-            messageValues: { child: "Now, I'd like to know a bit more of your child.", me: "Now, I'd like to know a bit more of you." },
+            messageValues: { 
+              child: "Please provide more information about your child's symptoms.", 
+              me: "Please provide more information about your symptoms." 
+            },
             message: "Now, I'd like to know a bit more of you."
           },
           {

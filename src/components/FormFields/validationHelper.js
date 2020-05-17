@@ -1,4 +1,4 @@
-export default function Helper(rule, value) {
+export default function Helper(rule, value, inputLength) {
   switch(rule) {
     case 'required':
     {
@@ -13,11 +13,30 @@ export default function Helper(rule, value) {
       let message = isError ? 'Invalid Format' : ''
       return { isError, message }
     }
-    case 'us-phone-number':
+    case 'us-phone-number-formatted':
     {
       let regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
       let isError = !(regex.test(value))
       let message = isError ? 'Invalid Format' : ''
+      return { isError, message }
+    }
+    case 'us-phone-number-unformatted':
+    {
+      let regex = /^\+1\d{10}$/
+      let isError = !(regex.test(value))
+      let message = isError ? 'Invalid Format' : ''
+      return { isError, message }
+    }
+    case 'number-with-length':
+    {
+      let isError, message
+      if(isNaN(value)) { 
+        isError = true 
+        message = 'Not a number.'
+      } else {
+        isError = value && value.length !== inputLength
+        message = 'Invalid length.'
+      }
       return { isError, message }
     }
     case 'date':
@@ -25,6 +44,6 @@ export default function Helper(rule, value) {
 
     }
     default:
-      return { isError: false, message: '' }
+      return { isError: false, message: '', noRule: true }
   }
 }
