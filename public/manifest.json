@@ -30,10 +30,6 @@
       "sizes": "120x120",
       "type": "image/png"
     }, {
-      "src": "iOS/Icon-152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    }, {
       "src": "iOS/Icon-180.png",
       "sizes": "180x180",
       "type": "image/png"
