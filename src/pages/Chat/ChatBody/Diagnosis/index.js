@@ -178,7 +178,7 @@ export default function Diagnosis(props) {
   }
 
   const connectWithProvider = () => {
-    history.push('/hygeia/call')
+    history.push('/call')
     // let uanswer = [ ...continuation, { type: 'answer', text: 'Connect with a healthcare provider' }]
     // setContinuation(uanswer)
    

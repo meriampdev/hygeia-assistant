@@ -15,21 +15,21 @@ export default function AppRoutes() {
   return (
     <Router>
       <Switch>
-          <Route exact path="/hygeia" render={(props) => (
+          <Route exact path="/" render={(props) => (
             <LandingPage />
           )} />
           {/*<Route exact path="/" render={(props) => (
             <ProtectedRoute {...props} whenAuthRedirect='/home' component={<div>Login</div>} />
           )} />*/}
-          <Route exact path="/hygeia/login" render={(props) => (
+          <Route exact path="/login" render={(props) => (
             <Login />
           )} />
 
-          <Route exact path="/hygeia/signup" render={(props) => (
+          <Route exact path="/signup" render={(props) => (
             <ChatSignup />
           )} />
 
-          <Route exact path="/hygeia/call" render={(props) => (
+          <Route exact path="/call" render={(props) => (
             <Call />
           )} />
 
