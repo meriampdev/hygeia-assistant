@@ -21,7 +21,7 @@ export default function SocketHandler(socket, socketMessageHandlers, dispatch, r
         socket.send(JSON.stringify({ type: "CLIENT_UN_ANSWERED", roomKey }))
         socket.close()
       }
-    }, 300000); // 5 mins
+    }, 40000); // 1 mins
     // }, 900000); // 15 mins
   }
 

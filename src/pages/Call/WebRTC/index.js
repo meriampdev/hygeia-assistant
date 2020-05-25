@@ -76,6 +76,7 @@ export default function WebRTC(rtcProps) {
         "roomKey": roomKey, 
         call_start_timestamp: new Date().toISOString()
       }
+      console.log('userData', userData)
       const connectPayload = { ...roomKeyMessage, userData }
       socketInstance.send(JSON.stringify(connectPayload));
     },
