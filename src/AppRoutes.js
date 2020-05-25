@@ -10,32 +10,27 @@ import LandingPage from './pages/LandingPage'
 import SignUp from './pages/SignUp'
 import Call from './pages/Call'
 import ChatSignup from './pages/Chat/ChatBody/SignUp'
-import Layout from './components/LayoutNoDrawer'
 
 export default function AppRoutes() {
   return (
     <Router>
       <Switch>
-          <Route exact path="/" render={(props) => (
+          <Route exact path="/hygeia" render={(props) => (
             <LandingPage />
           )} />
           {/*<Route exact path="/" render={(props) => (
             <ProtectedRoute {...props} whenAuthRedirect='/home' component={<div>Login</div>} />
           )} />*/}
-          <Route exact path="/login" render={(props) => (
+          <Route exact path="/hygeia/login" render={(props) => (
             <Login />
           )} />
 
-          <Route exact path="/signup" render={(props) => (
+          <Route exact path="/hygeia/signup" render={(props) => (
             <ChatSignup />
           )} />
 
-          <Route exact path="/call" render={(props) => (
+          <Route exact path="/hygeia/call" render={(props) => (
             <Call />
-          )} />
-
-          <Route path="/auth" render={(props) => (
-            <Layout />
           )} />
 
           <Route  path="*" render={(props) => (
