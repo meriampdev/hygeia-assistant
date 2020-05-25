@@ -63,6 +63,8 @@ export default function Login(props) {
     }
   }
 
+  console.log('process', process.env.REACT_APP_GOOGLE_CLIENT_ID)
+
   return (
     <OutAppLayout>
       <Grid position="center" align="middle">
