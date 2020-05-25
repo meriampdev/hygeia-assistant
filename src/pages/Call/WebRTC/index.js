@@ -200,9 +200,6 @@ export default function WebRTC(rtcProps) {
             </div>
           : null
         }
-        <div className="contact-name">
-              <h3>Dr. Strange</h3>
-            </div>
         {
           providerData ? 
             <div className="contact-name">
