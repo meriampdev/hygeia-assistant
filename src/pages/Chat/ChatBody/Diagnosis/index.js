@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import UserInputMessage from '../../../../components/UserInputMessage'
 import HygMessageGroupWrapper from '../../../../components/HygeiaMessage/MessageGroupWrapper'
@@ -10,6 +11,7 @@ import HygeiaQuestions from './HygeiaQuestions'
 import Button from 'react-md/lib/Buttons/Button'
 
 export default function Diagnosis(props) {
+  const history = useHistory()
   const dispatch = useDispatch()
   // this for user initiated stoppage
   const should_stop = useSelector(state => state.chat.should_stop)
@@ -176,25 +178,26 @@ export default function Diagnosis(props) {
   }
 
   const connectWithProvider = () => {
-    let uanswer = [ ...continuation, { type: 'answer', text: 'Connect with a healthcare provider' }]
-    setContinuation(uanswer)
+    history.push('/call')
+    // let uanswer = [ ...continuation, { type: 'answer', text: 'Connect with a healthcare provider' }]
+    // setContinuation(uanswer)
    
-    let cc = [ ...uanswer, 
-      { type: 'question', questionType: 'continuation-buttons', text: '', lineID: uanswer.length,
-        options: null
-      }]
-    setContinuation(cc)
-    setTimeout(function() {
-      setContinuation([ ...uanswer, 
-        { type: 'question', questionType: 'message', text: "How would you like to pay?", lineID: uanswer.length },
-        { type: 'question', questionType: 'continuation-buttons', text: '', lineID: uanswer.length+1,
-          options: [
-            { text: 'Use my insurance', handler: () => handleEnd('Use my insurance') },
-            { text: 'Continue without insurance', handler: () => handleEnd('Continue without insurance') }
-          ]
-        }
-      ])
-    }, 1000);
+    // let cc = [ ...uanswer, 
+    //   { type: 'question', questionType: 'continuation-buttons', text: '', lineID: uanswer.length,
+    //     options: null
+    //   }]
+    // setContinuation(cc)
+    // setTimeout(function() {
+    //   setContinuation([ ...uanswer, 
+    //     { type: 'question', questionType: 'message', text: "How would you like to pay?", lineID: uanswer.length },
+    //     { type: 'question', questionType: 'continuation-buttons', text: '', lineID: uanswer.length+1,
+    //       options: [
+    //         { text: 'Use my insurance', handler: () => handleEnd('Use my insurance') },
+    //         { text: 'Continue without insurance', handler: () => handleEnd('Continue without insurance') }
+    //       ]
+    //     }
+    //   ])
+    // }, 1000);
   }
 
   const handleEnd = (text) => {

@@ -265,7 +265,7 @@ export default [
                 label: 'Eye' 
               },
               { 
-                value: [ 'ear', 'hear', 'clogged', 'pressure'], 
+                value: [ 'ear', 'hear', 'clogged'], 
                 label: 'Ear' 
               },
               { 
@@ -378,44 +378,44 @@ export default [
       }
     ]
   },
-  {
-    code: 'speakToProvider',
-    conversation: [
-      {
-        from: 'hygeia',
-        messages: [
-          {
-            type: 'button-option',
-            inputKey: 'speakToProvider',
-            inputPrompt: true,
-            message: "",
-            inputOptions: [
-              { value: true, label: 'Connect with a healthcare provider' }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    code: 'modeOfPayment',
-    conversation: [
-      {
-        from: 'hygeia',
-        messages: [
-          { type: 'message', text: "How would you like to pay?"}, 
-          {
-            type: 'button-option',
-            inputKey: 'modeOfPayment',
-            message: "",
-            inputPrompt: true,
-            inputOptions: [
-              { value: 'insurance', label: 'Use my insurance' },
-              { value: 'notInsurance', label: 'Continue without insurance' },
-            ]
-          }
-        ]
-      }
-    ]
-  },
+  // {
+  //   code: 'speakToProvider',
+  //   conversation: [
+  //     {
+  //       from: 'hygeia',
+  //       messages: [
+  //         {
+  //           type: 'request-trigger-buttons',
+  //           inputKey: 'speakToProvider',
+  //           inputPrompt: true,
+  //           message: "",
+  //           inputOptions: [
+  //             { value: true, label: 'Connect with a healthcare provider' }
+  //           ]
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
+  // {
+  //   code: 'modeOfPayment',
+  //   conversation: [
+  //     {
+  //       from: 'hygeia',
+  //       messages: [
+  //         { type: 'message', text: "How would you like to pay?"}, 
+  //         {
+  //           type: 'button-option',
+  //           inputKey: 'modeOfPayment',
+  //           message: "",
+  //           inputPrompt: true,
+  //           inputOptions: [
+  //             { value: 'insurance', label: 'Use my insurance' },
+  //             { value: 'notInsurance', label: 'Continue without insurance' },
+  //           ]
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
 ]

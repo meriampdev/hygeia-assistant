@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import LoaderWithLogo from '../LoaderWithLogo'
 
 const roleNoAccess = []
 const ProtectedRoute = (props) => {
@@ -55,7 +56,7 @@ const ProtectedRoute = (props) => {
     }
   }
 
-  let toRender = <div>Loading...</div> // just display loader if request has not yet been sent (this is onload scenario)
+  let toRender = <LoaderWithLogo /> // just display loader if request has not yet been sent (this is onload scenario)
 
   if(sentValidationRequest.sent) {  // if validationRequest is done
     if(!token) {

@@ -6,13 +6,38 @@ import Paper from 'react-md/lib/Papers/Paper'
 import Textfield from '../../components/FormFields/Textfield'
 import Button from 'react-md/lib/Buttons/Button'
 import OutAppLayout from '../../components/OutAppLayout'
+import FacebookLogin from 'react-facebook-login'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { googleAuth } from '../../redux'
+import GoogleLogin from 'react-google-login'
 
 export default function Login(props) {
+  const dispatch = useDispatch()
+  const history = useHistory()
   const [ headLine, setHeadLine ] = useState("Sign in with Phone Number")
   const [ defaultProps, setDefaultProps ] = useState({ id: "phoneNumber", type: "tel", label: "Phone" })
   const [ formData, setFormData ] = useState({ username: '', password: '' })
   const [ formErrors, setFormErrors ] = useState({})
   const [ submitAttempt, setAttempt ] = useState(0)
+
+  const responseFacebook = (response) => {
+    console.log(response);
+    if (response.accessToken) {
+      // window.open(`${process.env.REACT_APP_PROVIDER_SITE}/auth?domain=facebook`)
+    } else {
+      
+    }
+  }
+
+  const responseGoogle = (response) => {
+    console.log('responseGoogle', response);
+    if (response.accessToken) {
+      window.location.replace(`${process.env.REACT_APP_PROVIDER_SITE}/provider/auth`)
+    } else {
+      
+    }
+  }
 
   useEffect(() => {
     if(submitAttempt) {
@@ -76,13 +101,31 @@ export default function Login(props) {
           <p>or continue with</p>
         </Cell>
         <Cell size={12}>
+        {
+          // <FacebookLogin
+          //   appId={process.env.REACT_APP_FB_APP_ID}
+          //   autoLoad={true}
+          //   fields="name,email"
+          //   scope="public_profile"
+          //   callback={responseFacebook}
+          //   icon="fa-facebook" />
+        }
+        {
           <button className="loginBtn loginBtn--facebook">
             Login with Facebook
           </button>
+        }
 
-          <button className="loginBtn loginBtn--google">
-            Login with Google
-          </button>
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+          render={renderProps => (
+            <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Login with Google</button>
+          )}
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
+        />
         </Cell>
       </Grid>
     </OutAppLayout>

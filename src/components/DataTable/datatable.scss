@@ -2,20 +2,20 @@
   width: auto;
   overflow: auto;
   border: 1px solid var(--border-color);
-  // box-shadow: 0px 1px 3px 0px #86c232;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3);
 
   & > div > div:first-child {
     border-bottom: 1px solid var(--border-color);
   }
 
   .MuiPaper-root {
-    background: rgba(0,0,0,0.001);
+    background: #FFF;
   }
 
   td.MuiTableCell-root {
     border-right: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
-    color: var(--text-color) !important;
+    // color: var(--text-color) !important;
   }
 
   .truncate-text {
@@ -36,7 +36,7 @@
 
   .MuiTableFooter-root {
     span {
-      color: var(--text-color);
+      // color: var(--text-color);
     }
   }
 }

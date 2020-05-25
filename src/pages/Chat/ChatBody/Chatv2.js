@@ -19,7 +19,7 @@ export default function Chatv2HookWrap(props) {
       dispatch(stopQuestions(false))
     }
   }
-
+  console.log('getLikeSymptoms', getLikeSymptoms([ 'ear', 'hear', 'clogged']))
   class Chatv2 extends React.Component {
     constructor(props) {
       super(props)

@@ -63,6 +63,8 @@ const ChatMessages = React.forwardRef((props, ref) => {
       let suggestions = getLikeSymptoms(userAction.value)
       localStorageSetResponses('bodyAreaSymptoms', suggestions)
       props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)
+    } else if(messageData.inputKey === 'speakToProvider') {
+      history.push('/call')
     } else {
       let newConversationFlow = removeMessageType(props.conversationFlow, 'swipeable-list', messageData.inputKey)
       props.startNext(newConversationFlow, messageData.inputKey, userAction.value, userAction.label)

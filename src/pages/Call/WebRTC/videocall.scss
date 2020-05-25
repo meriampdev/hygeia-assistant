@@ -1,0 +1,172 @@
+@media screen and (max-width: 650px) {
+  .call-interface-wrapper {
+    #videoCall {
+      height: 100vh;
+      margin: 0;
+    }
+
+    #videoCall .remote-stream {
+      position: fixed;
+      right: 0; 
+      bottom: 0;
+      min-width: 100%; 
+      min-height: 100%;
+      object-fit: cover;
+      margin: 0;
+    }
+
+    #videoCall .local-stream {
+      width: auto !important;
+      height: 15% !important;
+      bottom: 12% !important;
+      right: 3% !important;
+    }
+
+    .call-control {
+      height: 60px;
+      width: 60px;
+      .md-icon {
+        font-size: 35px;
+      }
+
+      &.start-call-btn {
+        left: 43%;
+      }
+    }
+
+    #videoCall .controls {
+      width: 100%;
+      left: 22% !important;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .call-interface-wrapper {
+    #videoCall {
+      height: 100vh;
+      margin: 0;
+    }
+
+    #videoCall .remote-stream {
+      position: fixed;
+      right: 0; 
+      bottom: 0;
+      min-width: 100%; 
+      min-height: 100%;
+      object-fit: cover;
+      margin: 0;
+    }
+
+    #videoCall .local-stream {
+      width: auto !important;
+      height: 15% !important;
+      bottom: 12% !important;
+      right: 3% !important;
+    }
+
+    .call-control {
+      height: 60px;
+      width: 60px;
+      .md-icon {
+        font-size: 35px;
+      }
+
+      &.start-call-btn {
+        left: 43%;
+      }
+    }
+
+    #videoCall .controls {
+      width: 100%;
+      left: 22% !important;
+    }
+  }
+}
+
+.call-interface-wrapper {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  .connecting-wrapper {
+    position: absolute;
+    top: 30%;
+    left: 40%;
+  }
+
+  #videoCall {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .call-control {
+    height: 80px;
+    width: 80px;
+    .md-icon {
+      font-size: 55px;
+    }
+
+    &.start-call-btn {
+      position: absolute;
+      top: 40%;
+      left: 48%;
+      z-index: 10;
+
+      &:after {
+        content: 'Start Call';
+        position: absolute;
+        bottom: -20px;
+        left: -11%;
+        font-size: 17px;
+        width: max-content;
+      }
+    }
+  }
+
+  #videoCall .contact-name {
+    position: absolute;
+    top: 0;
+    margin: 15px;
+    padding: 5px;
+    background: #FFF;
+    // text-shadow: 0 1px rgba(0,0,0,0.7);
+    border-radius: 4px;
+    h3 {
+      margin: unset;
+    }
+  }
+
+  #videoCall .remote-stream {
+    width: 100%;
+    height: 100%;
+    background: rgba(3,33,52,0.7);
+    z-index: -1;
+  }
+
+  #videoCall .local-stream {
+    width: 300px;
+    height: 32%;
+    position: absolute;
+    z-index: 1000;
+    bottom: 10%;
+    right: 0%;
+  }
+
+  #videoCall .controls {
+    position: absolute;
+    bottom: 0;
+    left: 44%;
+    margin-right: 20px;
+    margin-bottom: 10px;
+
+    .call-end {
+      .md-icon {
+        color: #f00 !important;
+      }
+    }
+  }
+
+}

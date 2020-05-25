@@ -6,7 +6,7 @@
     border-right: 1px solid rgba(255,255,255,0.3);
     white-space: nowrap;
     min-width: 150px;
-    color: #e2e2e2;
+    // color: #e2e2e2;
     div.custom-filter {
       width: 100%;
 
@@ -14,19 +14,19 @@
         span.MuiButton-label {
           display: flex;
           justify-content: space-between;
-          color: #ebebeb !important;
+          // color: #ebebeb !important;
         }
 
         &.is-open {
           span.MuiButton-endIcon {
-            color: #4394F7;
+            // color: #4394F7;
           }
         }
       }
 
       &.filter-active {
         span.MuiButton-endIcon {
-          color: #4394F7;
+          // color: #4394F7;
         }
       }
     }
@@ -48,7 +48,7 @@
   width: fit-content;
   table.MuiTable-root {
     width: auto;
-    color: #e2e2e2;
+    // color: #e2e2e2;
   }
   .MuiTable-root td, .MuiTable-root tbody td {
     width: auto !important;
