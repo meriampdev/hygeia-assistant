@@ -60,6 +60,7 @@ export default function WebRTC(rtcProps) {
     if(!initSocketStatus && roomKey && localMediaStream && rtcPeerConnection) {
       setInitSocketStatus(true)
       let socketInstance = new WebSocket(rtcProps.URL)
+      console.log('socketInstance', socketInstance)
       SocketHandler(socketInstance, socketMessageHandlers, dispatch, roomKey, localMediaStream, rtcPeerConnection)
       initSocket(socketInstance)
     }
