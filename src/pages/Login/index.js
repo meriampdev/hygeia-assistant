@@ -34,7 +34,7 @@ export default function Login(props) {
     console.log('responseGoogle', response);
     if (response.accessToken) {
       dispatch(googleAuth(response.profileObj))
-      window.location.replace('http://localhost:4000/provider')
+      window.location.replace(`${process.env.REACT_APP_PAGE_URL}/provider`)
     } else {
       
     }
