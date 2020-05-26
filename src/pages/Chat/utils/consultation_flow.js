@@ -31,8 +31,7 @@ export default [
             type: 'message',
             messageIsActionDependent: true,
             actionKey: 'userRole',
-            messageValues: { client: 'If this is a medical emergency, please call 911.', provider: '' },
-            message: "If this is a medical emergency, please call 911.\nWho is this visit for?"
+            messageValues: { client: 'If this is a medical emergency, please call 911.\nWho is this visit for?', provider: '' },
           },
           {
             type: 'button-option',
