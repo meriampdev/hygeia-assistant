@@ -1,4 +1,4 @@
-import { ADD_TO_QUEUE, SET_CALL_CONNECTOR, GET_QUEUE, ERROR_GET_QUEUE } from './types'
+import { ADD_TO_QUEUE, SET_CALL_CONNECTOR, GET_QUEUE, ERROR_GET_QUEUE, RMEOVE_FROM_QUEUE } from './types'
 
 const initialState = {
   call_queue: [],
@@ -18,6 +18,11 @@ const authReducer = (state = initialState, action) => {
     case GET_QUEUE:
     {
       return { ...state, call_queue: action.payload, error_get_queue: false }
+    }
+    case RMEOVE_FROM_QUEUE:
+    {
+      let newList = state.call_queue.filter(f => f.id !== action.payload)
+      return { ...state, call_queue: newList, error_get_queue: false }
     }
     case ERROR_GET_QUEUE:
       return { ...state, call_queue: [], error_get_queue: true }

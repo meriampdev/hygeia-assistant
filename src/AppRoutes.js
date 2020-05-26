@@ -10,6 +10,8 @@ import LandingPage from './pages/LandingPage'
 import SignUp from './pages/SignUp'
 import Call from './pages/Call'
 import ChatSignup from './pages/Chat/ChatBody/SignUp'
+import LayoutNoDrawer from './components/LayoutNoDrawer'
+import Provider from './pages/Provider'
 
 export default function AppRoutes() {
   return (
@@ -31,6 +33,18 @@ export default function AppRoutes() {
 
           <Route exact path="/call" render={(props) => (
             <Call />
+          )} />
+          
+          <Route path="/provider" render={(props) => (
+            <LayoutNoDrawer 
+                navItems={[{
+                  label: 'Waiting Room', path: '/waitingroom',
+                  to: `/provider/waitingroom`,
+                  exact: true,
+                  icon: 'web',
+                  component: <Provider />
+                }]}
+              />
           )} />
 
           <Route  path="*" render={(props) => (

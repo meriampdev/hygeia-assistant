@@ -1,0 +1,109 @@
+.dashboard-legend {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-bottom: 25px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+
+  .legend-item {
+    width: 65%;
+    max-height: 60px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 4px;
+    background: papayawhip;
+    text-align: center;
+    margin: 5px;
+
+    .count {
+      align-self: center;
+    }
+    .label {
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    &.employee-count {
+      background: var(--primary-color);
+      color: #FFF;
+      font-weight: 600;
+      
+    }
+  }
+}
+
+.card {
+  min-height: 300px;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3);
+  position: relative;
+
+  .percentage {
+    position: absolute;
+    top: -15px;
+    right: 22px;
+    min-height: 90px;
+    min-width: 90px;
+    max-width: 90px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #FFF;
+    font-weight: 700;
+    border-radius: 4px;
+
+    .percentage-label {
+      font-size: 14px;
+      text-align: center;
+      word-wrap: word-break;
+    }
+
+    &.cleared {
+      background: var(--secondary-color);
+    }
+    &.not-cleared {
+      background: #E57373;
+    }
+    &.other {
+      background: #82B1FF;
+    }
+  }
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  .data-label {
+    align-self: center;
+    font-size: 20px;
+  }
+  .sub-label {
+    align-self: center;
+  }
+}
+
+.tbl-status {
+  padding: 3px 10px;
+  border-radius: 16px;
+  color: #FFF;
+  font-size: 12px;
+
+  &.cleared {
+    background: #86c232;
+  }
+  &.not-cleared {
+    background: #E57373;
+  }
+  &.unknown {
+    background: #003c71;
+  }
+}

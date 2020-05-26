@@ -19,14 +19,14 @@
 
         &.is-open {
           span.MuiButton-endIcon {
-            // color: #4394F7;
+            color: #4394F7;
           }
         }
       }
 
       &.filter-active {
         span.MuiButton-endIcon {
-          // color: #4394F7;
+          color: #4394F7;
         }
       }
     }
@@ -38,6 +38,11 @@
     &.custom-action-1, &.max-content {
       min-width: unset !important;
     }
+
+    .MuiPaper-root {
+      background: #FFF !important;
+      box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3);
+    }
   }
 }
 .header-filter {
@@ -45,21 +50,38 @@
 }
 
 .datatable-wrapper {
-  width: fit-content;
+  // width: fit-content;
   table.MuiTable-root {
-    width: auto;
+    width: 100%;
     // color: #e2e2e2;
   }
   .MuiTable-root td, .MuiTable-root tbody td {
     width: auto !important;
   }
   tbody.MuiTableBody-root {
+    tr:nth-child(odd) {
+      background: rgba(0,0,0,0.05);
+    }
     td.MuiTableCell-root {
-      padding: 5px 10px;
+      padding: 10px;
       border-right: 1px solid rgba(255,255,255,0.3);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      font-size: 13px;
 
       div.max-content {
         width: max-content
+      }
+      div.text-no-wrap {
+        white-space: nowrap;
+      }
+      div.icon-displays {
+        max-height: 30px;
+        max-width: 30px;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
       }
     }
   }

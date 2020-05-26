@@ -1,4 +1,5 @@
-import { ADD_TO_QUEUE, SET_CALL_CONNECTOR, GET_QUEUE, ERROR_GET_QUEUE, UPDATE_CALL_STATUS } from './types'
+import { ADD_TO_QUEUE, SET_CALL_CONNECTOR, GET_QUEUE, ERROR_GET_QUEUE, UPDATE_CALL_STATUS,
+  RMEOVE_FROM_QUEUE } from './types'
 import axios from 'axios'
 
 const API = process.env.REACT_APP_CONNECT_API
@@ -33,6 +34,13 @@ export function getQueue(payload) {
         error: e.response
       })
     })
+  }
+}
+
+export function removeQueue(payload) {
+  return {
+    type: RMEOVE_FROM_QUEUE,
+    payload: payload
   }
 }
 

@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import moment from 'moment'
 import ActionMenuButton from './ActionMenuButton'
 import CustomHeader from './CustomHeaderWithFilters'
+import TimeInterval from './TimeInterval'
 
 import { forwardRef } from 'react';
 import AddBox from '@material-ui/icons/AddBox';
@@ -191,14 +192,15 @@ class DataTable extends React.PureComponent {
           let colData = { ...col,
             render: (rowData) => {
               let icons = col.fields.map((field) => {
-                let shouldDisplay = false
+                let shouldDisplay = false, element
                 try {
-                  shouldDisplay = eval(`rowData.${field}`)
+                  shouldDisplay = true
+                  element = eval(`rowData.${field}`)
                 } catch(e) {
 
                 }
 
-                if(shouldDisplay) return col.iconDisplays[field]
+                if(shouldDisplay) return col.iconDisplays[element]
               })
               return <div className={col.className}>{icons}</div>
             },
@@ -243,6 +245,35 @@ class DataTable extends React.PureComponent {
           let colData = { ...col,
             render: (rowData) => {
               return <div className={col.className}>{this.renderActionButtons(col.buttons, rowData, col)}</div>
+            }
+          }
+          return colData
+        }
+        case 'key-value-map':
+        {
+          let colData = { ...col,
+            render: (rowData) => {
+              let field 
+              try {
+                field = eval(`rowData.${col.field}`)
+              } catch (e) {}
+              let displayText = field ? col.keyValueMap[field] : ''
+              return <div className={col.className}>{displayText}</div>
+            }
+          }
+          return colData
+        }
+        case 'time-interval':
+        {
+          let colData = { ...col,
+            render: (rowData) => {
+              let colValue
+              try {
+                colValue = eval(`rowData.${col.field}`)
+              } catch (e) {
+                colValue = moment() 
+              }
+              return <div className={col.className}><TimeInterval value={colValue} /></div>
             }
           }
           return colData

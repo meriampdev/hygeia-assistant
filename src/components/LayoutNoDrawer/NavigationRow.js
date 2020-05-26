@@ -9,13 +9,16 @@ export default function NavigationRow({ navItems }) {
   return (
     <div className={`navigation-row ${isMobile ? 'mobile' : ''}`}>
       <div className='header-brand'>
-        <img src={require('../../sass/logo.png')} alt="protectwell" />
+        <img src={require('../../assets/hygeia-logo-icon.png')} alt="globalhealthway" />
+        {
+          !isMobile ? <div className='brand-name'>Global Health Way</div> : null
+        }
       </div>
       <div className='navigation-items'>
       {
         navItems.map((nav) => {
           let isActive = pathname === nav.to
-          if(pathname === '/auth' && nav.to === '/auth/dashboard') {
+          if(pathname === '/provider/auth' && nav.to === '/provider/auth/waitingroom') {
             isActive = true
           }
           return <div onClick={() => history.push(nav.to)} 

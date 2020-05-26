@@ -1,15 +1,24 @@
 .datatable-wrapper {
-  width: auto;
+  // width: auto;
+  width: 100%;
   overflow: auto;
   border: 1px solid var(--border-color);
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3);
+  max-height: 78vh;
+
+  thead tr th {
+    position: sticky;
+    top: 0;
+    background: #FFF;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+  }
+
+  tbody.MuiTableBody-root {
+    max-height: 50%;
+  }
 
   & > div > div:first-child {
     border-bottom: 1px solid var(--border-color);
-  }
-
-  .MuiPaper-root {
-    background: #FFF;
   }
 
   td.MuiTableCell-root {
@@ -34,9 +43,50 @@
     }
   }
 
-  .MuiTableFooter-root {
-    span {
-      // color: var(--text-color);
+  .action-menuitem {
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    .MuiPaper-root {
+      background: #FFF;
+
+      .MuiMenuItem-root {
+        font-size: 14px;
+      }
     }
   }
+
+  .MuiPaper-root {
+    width: 100%;
+    background: rgba(0,0,0,0.001);
+    // background: #FFF;
+    box-shadow: unset;
+    .Component-horizontalScrollContainer-33 {
+      width: auto;
+      overflow: unset !important;
+
+      & > div {
+        width: 100%;
+        & > div {
+          overflow: unset !important;
+          width: auto;
+        }
+      }
+    }
+
+    & > .MuiTable-root {
+      position: sticky;
+      bottom: 0;
+      background: #FFF;
+      width: 100%;
+
+      .MuiTableFooter-root {
+        display: flex !important;
+      }
+      span {
+        // color: var(--text-color);
+      }
+    }
+  }
+
+  
 }

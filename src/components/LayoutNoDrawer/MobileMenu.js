@@ -10,8 +10,8 @@ import {
 export default function MobieMenu({ navItems, pathname, history }) {
   let activePage  /* Get Active Page Lable for initial state */
   navItems.forEach((nav) => { if(nav.to === pathname) { activePage = nav.label } })
-  if(pathname === '/auth') {
-    activePage = 'Dashboard'
+  if(pathname === '/provider/auth') {
+    activePage = 'Waiting Room'
   }
 
   const [ selected, setSelected ] = useState(activePage)
@@ -44,8 +44,6 @@ export default function MobieMenu({ navItems, pathname, history }) {
       simplifiedMenu={true}
     >
       <AccessibleFakeButton
-        component={IconSeparator}
-        iconBefore
         label={
           <IconSeparator label={selected}>
             <FontIcon>arrow_drop_down</FontIcon>

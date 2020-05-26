@@ -5,7 +5,8 @@ const initialState = {
   loading: false,
   token_validation: false,
   auth: null,
-  authDomain: ''
+  authDomain: '',
+  data: { name: 'Dr. Who' }
 };
 
 const authReducer = (state = initialState, action) => {
