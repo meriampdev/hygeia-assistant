@@ -1,8 +1,10 @@
-import { ADD_TO_QUEUE, SET_CALL_CONNECTOR, GET_QUEUE, ERROR_GET_QUEUE, RMEOVE_FROM_QUEUE } from './types'
+import { ADD_TO_QUEUE, SET_CALL_CONNECTOR, GET_QUEUE, ERROR_GET_QUEUE, RMEOVE_FROM_QUEUE,
+  GET_CALL_LIST } from './types'
 
 const initialState = {
   call_queue: [],
-  callConnector: null
+  callConnector: null,
+  call_list: []
 };
 
 const authReducer = (state = initialState, action) => {
@@ -11,7 +13,7 @@ const authReducer = (state = initialState, action) => {
     {
       let newData = action.payload.userData
       let newQueue = [ newData, ...state.call_queue ]
-      return { ...state, call_queue: newQueue }
+      return { ...state, call_queue: newQueue, call_list: [ newData, ...state.call_list ] }
     }
     case SET_CALL_CONNECTOR:
       return { ...state, callConnector: action.payload }
@@ -24,6 +26,13 @@ const authReducer = (state = initialState, action) => {
       let newList = state.call_queue.filter(f => f.id !== action.payload)
       return { ...state, call_queue: newList, error_get_queue: false }
     }
+    case GET_CALL_LIST:
+    {
+      let list = action.payload.filter((f) => f.patientName)
+      return { ...state, call_list: list, error_get_list: false }
+    }
+    case `${GET_CALL_LIST}_ERROR`:
+      return { ...state, call_list: [], error_get_list: true }
     case ERROR_GET_QUEUE:
       return { ...state, call_queue: [], error_get_queue: true }
     default:

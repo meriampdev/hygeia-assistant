@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './styles.scss'
 import Grid from 'react-md/lib/Grids/Grid'
 import Cell from 'react-md/lib/Grids/Cell'
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,27 +10,30 @@ import Dialog from '../../components/Dialog'
 import Button from 'react-md/lib/Buttons/Button'
 import { employeeListColumns, mockList, readCSV } from './constants'
 import TextField from '@material-ui/core/TextField'
-import { getQueue, updateCall } from '../../redux'
+import { getList, getQueue, updateCall } from '../../redux'
 import WebRTC from './WebRTC'
+import ViewMore from './ViewMore'
 
 export default function EmployeeList(props) {
   const dispatch = useDispatch()
   const [ visible, setVisibility ] = useState(false)
+  const [ viewMore, setViewMore ] = useState(false)
   const [ fileName, setFileName ] = useState("")
   const [ csvJson, setCSVJson ] = useState([])
   const [ fullDialogWidth, setDialogWitdh ] = useState(false)
   const dashboard = useSelector(state => state.dashboard)
   const socket_queue = useSelector(state => state.socket.call_queue)
+  const call_list = useSelector(state => state.socket.call_list)
   const error_get_queue = useSelector(state => state.socket.error_get_queue)
   const [ call_queue, setList ] = useState(socket_queue)
   const [ callData, setCallData ] = useState(null)
   const history = useHistory()
 
   useEffect(() => {
-    if(socket_queue && socket_queue.length > 0) {
-      setList(socket_queue)
+    if(call_list && call_list.length > 0) {
+      setList(call_list)
     }
-  }, [socket_queue])
+  }, [call_list])
 
   const handleAnswerCall = (data) => {
     //  TODO: CHANGE LOGIC TO INCLUDE PROVIDER INFORMATION (WHO ANSWERED WHAT CALL)
@@ -39,7 +43,8 @@ export default function EmployeeList(props) {
   }
 
   const handleViewMore = (data) => {
-    console.log('handleViewMore data', data)
+    setCallData(data)
+    setViewMore(true)
   }
 
   const handleStopCall = () => {
@@ -49,7 +54,7 @@ export default function EmployeeList(props) {
   }
 
   return (
-    <Grid>
+    <Grid style={{maring: 0, width: '100%'}}>
       <Cell size={6}>
       </Cell>
       <Cell size={6}>
@@ -66,13 +71,20 @@ export default function EmployeeList(props) {
             actionsColumnIndex: -1
           }}
           tableColumns={employeeListColumns(handleAnswerCall, handleViewMore)}
-          tableData={call_queue}
+          tableData={call_list}
         />
       </Cell>
       {
         visible ? 
-          <Dialog visible={true} nativeProps={{ fullScreen: true, className: 'vc-interface-dialog' }} noActionBtns={true} >
+          <Dialog visible={true} handleCancel={() => setVisibility(false)} nativeProps={{ fullScreen: true, className: 'vc-interface-dialog' }} noActionBtns={true} >
             <WebRTC callData={callData} closeCall={handleStopCall} URL="wss://hygeia-vc-server.herokuapp.com/" />
+          </Dialog>
+        : null
+      }
+      {
+        viewMore ? 
+          <Dialog handleCancel={() => setViewMore(false)} title="Client Data" visible={true} >
+            <ViewMore data={callData} />
           </Dialog>
         : null
       }

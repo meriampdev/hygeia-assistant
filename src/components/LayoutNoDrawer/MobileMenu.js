@@ -10,7 +10,7 @@ import {
 export default function MobieMenu({ navItems, pathname, history }) {
   let activePage  /* Get Active Page Lable for initial state */
   navItems.forEach((nav) => { if(nav.to === pathname) { activePage = nav.label } })
-  if(pathname === '/provider/auth') {
+  if(pathname === '/provider/waitingroom') {
     activePage = 'Waiting Room'
   }
 
@@ -22,7 +22,7 @@ export default function MobieMenu({ navItems, pathname, history }) {
 
   let menu = navItems.map((nav) => {
           let isActive = pathname === nav.to
-          if(pathname === '/auth' && nav.to === '/auth/dashboard') {
+          if(pathname === '/provider' && nav.to === '/provider/waitingroom') {
             isActive = true
           }
           return <ListItem onClick={() => onClickMenu(nav)} 
@@ -45,7 +45,7 @@ export default function MobieMenu({ navItems, pathname, history }) {
     >
       <AccessibleFakeButton
         label={
-          <IconSeparator label={selected}>
+          <IconSeparator label={selected || ""}>
             <FontIcon>arrow_drop_down</FontIcon>
           </IconSeparator>
         }

@@ -7,9 +7,15 @@ import { useSelector } from 'react-redux'
 export default function UserProfile({ id, className }) {
   const [ name, setName ] = useState("")
   const auth = useSelector(state => state.auth)
+
+  console.log('UserProfile -----', auth)
   useEffect(()=> {
-    if(auth) {
-      setName(auth.data.name)
+    if(auth && auth.data) {
+      if(auth.data.domain === 'google') {
+        setName(auth.data.data.name)
+      } else {
+        setName("Who")
+      }
     }
   }, [auth])
 

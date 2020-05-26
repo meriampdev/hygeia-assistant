@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp'
 import Call from './pages/Call'
 import ChatSignup from './pages/Chat/ChatBody/SignUp'
 import LayoutNoDrawer from './components/LayoutNoDrawer'
+import SecureRoute from './components/SecureRoute'
 import Provider from './pages/Provider'
 
 export default function AppRoutes() {
@@ -36,15 +37,20 @@ export default function AppRoutes() {
           )} />
           
           <Route path="/provider" render={(props) => (
-            <LayoutNoDrawer 
-                navItems={[{
-                  label: 'Waiting Room', path: '/waitingroom',
-                  to: `/provider/waitingroom`,
-                  exact: true,
-                  icon: 'web',
-                  component: <Provider />
-                }]}
-              />
+            <SecureRoute
+              component={
+                <LayoutNoDrawer 
+                  indexRoute='/provider'
+                  indexComponent={<Provider />}
+                  navItems={[{
+                    label: 'Waiting Room', path: '/waitingroom',
+                    to: `/provider/waitingroom`,
+                    exact: true,
+                    icon: 'web',
+                    component: <Provider />
+                  }]}
+                />
+              } />
           )} />
 
           <Route  path="*" render={(props) => (

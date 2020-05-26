@@ -42,33 +42,26 @@ export default function Root(props) {
     QueueSocket(socket, dispatch)
   }
 
-  function LayoutNoDrawer(props) {
-    
-    return (
-      <Grid style={{margin: '0', padding: '0'}}>
-        <Cell size={12} style={{margin: '0', width: '100%'}}>
-          <Toolbar
-            colored
-            title={<NavigationRow navItems={navItems} />}
-            actions={<UserProfile />}
-          />
-        </Cell>
-        <Cell size={12}>
-          <Switch key={history.location.path}>
-            {props.indexRoute}
-            {
-              navItems.map((item) => {
-                return <Route key={`navItem-${item.to}`} exact path={item.to} 
-                  component={() => item.component} />
-              })
-            }
-          </Switch>
-        </Cell>
-      </Grid>
-    )
-  }
-
-  return <LayoutNoDrawer />
+  return (<Grid style={{margin: '0', padding: '0'}}>
+      <Cell size={12} style={{margin: '0', width: '100%'}}>
+        <Toolbar
+          colored
+          title={<NavigationRow navItems={navItems} />}
+          actions={<UserProfile />}
+        />
+      </Cell>
+      <Cell size={12}>
+        <Switch key={history.location.path}>
+          <Route exact path={props.indexRoute} >{props.indexComponent}</Route>
+          {
+            navItems.map((item) => {
+              return <Route key={`navItem-${item.to}`} exact path={item.to} 
+                component={() => item.component} />
+            })
+          }
+        </Switch>
+      </Cell>
+    </Grid>)
 }
 // <WebRTC URL="wss://hygeia-vc-server.herokuapp.com/" />
 

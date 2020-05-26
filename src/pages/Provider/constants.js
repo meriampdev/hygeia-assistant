@@ -19,22 +19,27 @@ export const employeeListColumns = (handleAnswerCall, handleViewMore) => {
       ],
       className: 'max-content'
     },
+    { title: 'Call Status', fieldType: 'compoundField',
+      fields: ['status'], filterType: 'inputSearch', showFilter: false,
+      filterOption: { dataKey: null, dataFields: [], filterSelector: 'status' },
+      className: 'max-content'
+    },
     { title: 'Waiting Time', fieldType: 'time-interval',
       field: 'call_start_timestamp', filterType: 'inputSearch', showFilter: false,
       filterOption: { dataKey: null, dataFields: [], filterSelector: 'call_start_timestamp' },
       className: 'max-content'
     },
     { title: 'Patient',
-      fields: ['patientName'], fieldType: 'compoundField', 
+      fields: ['patientName', 'gender', 'age'], fieldType: 'compoundField', 
       filterType: 'inputSearch', showFilter: false,
       filterOption: { dataKey: null, dataFields: [], filterSelector: 'userData.patientName' },
-      className: 'max-content'
+      className: 'max-content capitalize'
     },
-    { title: 'Complaint', fieldType: 'compoundField',
-      fields: ['userData.complaint'], filterType: 'inputSearch', showFilter: false,
-      filterOption: { dataKey: null, dataFields: [], filterSelector: 'userData.complaint' },
-      className: 'max-content'
-    },
+    // { title: 'Concern', fieldType: 'compoundField',
+    //   fields: ['userData.complaint'], filterType: 'inputSearch', showFilter: false,
+    //   filterOption: { dataKey: null, dataFields: [], filterSelector: 'userData.complaint' },
+    //   className: 'max-content'
+    // },
     { title: 'Location', fieldType: 'compoundField',
       fields: ['stateOfResidence'], filterType: 'inputSearch', showFilter: false,
       filterOption: { dataKey: null, dataFields: [], filterSelector: 'userData.patientLocation' },

@@ -74,7 +74,8 @@ export default function WebRTC(rtcProps) {
       let userData = { ...chatData, 
         "id": roomKey,
         "roomKey": roomKey, 
-        call_start_timestamp: new Date().toISOString()
+        call_start_timestamp: new Date().toISOString(),
+        status: "ON_QUEUE"
       }
       console.log('userData', userData)
       const connectPayload = { ...roomKeyMessage, userData }

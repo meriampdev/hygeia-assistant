@@ -3,7 +3,7 @@ import Grid from 'react-md/lib/Grids/Grid'
 import Cell from 'react-md/lib/Grids/Cell'
 import EmployeeList from './EmployeeList'
 import { useDispatch } from 'react-redux'
-import { getQueue } from '../../redux'
+import { getQueue, getList } from '../../redux'
 
 let sendstatus = false
 export default function Dashboard(props) {
@@ -12,7 +12,7 @@ export default function Dashboard(props) {
   React.useEffect(() => {
     if(!sendstatus) {
       sendstatus = true
-      dispatch(getQueue())
+      dispatch(getList())
     }
   },[sendstatus])
 

@@ -210,37 +210,120 @@ export default [
     ]
   },
   {
-    code: 'symptoms',
+    code: 'bodyAreaSelection',
     conversation: [
       {
         from: 'hygeia',
         messages: [
           { type: 'message', text: "What is your main concern?"}, 
           {
-            type: 'selection',
+            type: 'request-trigger-buttons',
             apiEndpoint: '',
             apiDataKey: null,
-            inputKey: 'symptoms',
-            resultKey: 'symptoms',
+            inputKey: 'bodyAreaSelection',
+            resultKey: 'bodyAreaSymptoms',
             message: "Which part of the body is affected?",
             inputPrompt: true,
             inputOptions: [
-              { value: 'covid-19', label: 'Covid-19/Coronavirus' },
-              { value: 'Constitutional', label: 'Constitutional' },
-              { value: 'Respiratory', label: 'Respiratory' },
-              { value: 'Neurological', label: 'Neurological' },
-              { value: 'Eyes', label: 'Eyes' },
-              { value: 'Mouth-Throat', label: 'Mouth or Throat' },
-              { value: 'Ears', label: 'Ears' },
-              { value: 'Nose', label: 'Nose' },
-              { value: 'Gastrointestinal', label: 'Gastrointestinal' },
-              { value: 'Musculoskeletal', label: 'Musculoskeletal' },
-              { value: 'Endocrine', label: 'Endocrine' },
-              { value: 'Physchiatric', label: 'Physchiatric' },
-              { value: 'Cardiovascular', label: 'Cardiovascular' },
-              { value: 'Genitourinary', label: 'Genitourinary' },
-              { value: 'Integumentary', label: 'Integumentary (Skin)' },
-              { value: 'Heme/Lymphatic/Immune', label: 'Heme/Lymphatic/Immune' }
+              { 
+                value: [
+                  'head', 'fever', 'conscious', 'memory', 'dizzy'
+                ], 
+                label: 'Head'
+              },
+              { 
+                value: [
+                  'hair'
+                ], 
+                label: 'Hair'
+              },
+              { 
+                value: [
+                  'face', 'skin', 'blackheads'
+                ], 
+                label: 'Face'
+              },
+              { 
+                value: [
+                  'eye', 'vision', 'pupils', 'nystagmus', 'eyelid', ''
+                ], 
+                label: 'Eye' 
+              },
+              { 
+                value: [ 'ear', 'hear', 'clogged'], 
+                label: 'Ear' 
+              },
+              { 
+                value: [
+                  'nose', 'throat', 'nasal', 'snoring', 'snore', 'sneeze', 'smell', 'mucus'
+                ], 
+                label: 'Nose' 
+              },
+              { 
+                value: [
+                  'mouth', 'breath', 'tooth', 'bite', 'biting', 'chew', 'chewing', 'gum', 'teeth', 'toungue',
+                  'cough', 'snoring', 'vomiting', 'appetite', 'thirst', 'tonsils'
+                ], 
+                label: 'Mouth or Teeth' 
+              },
+              { 
+                value: [
+                  'throat', 'swallow', 'swallowing', 'cough', 'neck', 'hawking', 'hoarse', 'whistling', 'breathing',
+                  'mucus', 'voice', 'itchy throat', 'lymph node'
+                ], 
+                label: 'Neck or Back' 
+              },
+              { 
+                value: [
+                  'chest', 'upper limb', 'heart', 'heartburn', 'palpitations', 'cough', 'breath', 'gynecomastia'
+                ], 
+                label: 'Chest' 
+              },
+              { 
+                value: [
+                  'arm', 'hand', 'limb', 'shoulder', 'joint', 'extremities', 'spasms', 'forearm', 'elbow', 'wrist',
+                  'finger', 'nail', 'skin', 'muscles'
+                ], 
+                label: 'Arm or Hand' 
+              },
+              { 
+                value: [
+                  'abdomen', 'stomach', 'heartburn', 'bloat', 'bloating', 'vomit', 'digest', 'indigestion', 'weight',
+                  'cramps', 'period', 'constipation', 'diarrhea', 'sick', 'bowel', 'black stool', 'stool'
+                ], 
+                label: 'Abdomen' 
+              },
+              { 
+                value: [
+                  'limb', 'thigh', 'joint', 'hip', 'lower back', 'buttock', 'leg'
+                ], 
+                label: 'Thigh' 
+              },
+              {
+                value: [
+                  'knee', 'creak', 'walk', 'limp', ''
+                ],
+                label: 'Knee'
+              },
+              {
+                value: [
+                  'lower limb', 'calf', 'lower leg', 'leg', 'calve'
+                ],
+                label: 'Lower Leg'
+              },
+              {
+                value: [
+                  'foot', 'toe', 'ankle', 'feet', 'nail'
+                ],
+                label: 'Foot'
+              },
+              {
+                value: [
+                  'vaginal', 'intercourse', 'sex', 'menstrual', 'period', 'frequent urination', 'urinating', 'urine',
+                  'urinary', 'crotch', 'genital', 'penis'
+                ],
+                label: 'Sexual Organs'
+              }
             ]
           }
         ]
@@ -248,24 +331,57 @@ export default [
     ]
   },
   {
-    code: 'speakToProvider',
+    code: 'selectedFromSuggestion',
     conversation: [
       {
         from: 'hygeia',
         messages: [
+          { type: 'message', text: "Please select anything that closely describes your condition."}, 
+          { type: 'message', text: "I will have follow up questions based on what you will select."}, 
           {
-            type: 'request-trigger-buttons',
-            inputKey: 'speakToProvider',
+            type: 'swipeable-list',
+            dataKey: 'bodyAreaSymptoms',
+            valueKey: 'id',
+            labelKey: 'common_name',
+            inputType: 'text',
+            inputKey: 'selectedFromSuggestion',
+            message: "Describe your symptom",
             inputPrompt: true,
-            message: "",
-            inputOptions: [
-              { value: true, label: 'Connect with a healthcare provider' }
-            ]
           }
         ]
       }
     ]
   },
+  {
+    code: 'diagnosis',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "Starting diagnosis..."}, 
+        ]
+      }
+    ]
+  },
+  // {
+  //   code: 'speakToProvider',
+  //   conversation: [
+  //     {
+  //       from: 'hygeia',
+  //       messages: [
+  //         {
+  //           type: 'request-trigger-buttons',
+  //           inputKey: 'speakToProvider',
+  //           inputPrompt: true,
+  //           message: "",
+  //           inputOptions: [
+  //             { value: true, label: 'Connect with a healthcare provider' }
+  //           ]
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
   // {
   //   code: 'modeOfPayment',
   //   conversation: [

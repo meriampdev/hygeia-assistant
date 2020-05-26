@@ -19,7 +19,6 @@ export default function Chatv2HookWrap(props) {
       dispatch(stopQuestions(false))
     }
   }
-  console.log('getLikeSymptoms', getLikeSymptoms([ 'ear', 'hear', 'clogged']))
   class Chatv2 extends React.Component {
     constructor(props) {
       super(props)
@@ -201,6 +200,16 @@ export default function Chatv2HookWrap(props) {
       }
     }
 
+    afterSymptoms() {
+      let responses = localStorageGet('responses', 'object')
+      if(!this.state.hasSymptomsSelected) {
+        let currentIndex = _.findIndex(this.conversation, { code: 'symptoms' })
+        let nextIndex = currentIndex+1
+        this.setState({ hasSymptomsSelected: true })
+        this.runConversation(nextIndex)
+      }
+    }
+
     continueAfterDiagnosis() {
       let currentIndex = _.findIndex(this.conversation, { code: 'diagnosis' })
       let nextIndex = currentIndex+1
@@ -216,6 +225,7 @@ export default function Chatv2HookWrap(props) {
           changeAnswer={this.changeAnswer.bind(this)}
           startDiagnosis={this.state.startDiagnosis}
           continueAfterDiagnosis={this.continueAfterDiagnosis.bind(this)}
+          afterSymptoms={this.afterSymptoms.bind(this)}
         />
       )
     }

@@ -71,6 +71,9 @@
       div.max-content {
         width: max-content
       }
+      div.capitalize {
+        text-transform: capitalize;
+      }
       div.text-no-wrap {
         white-space: nowrap;
       }

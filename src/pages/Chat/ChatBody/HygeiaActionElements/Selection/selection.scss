@@ -1,0 +1,65 @@
+.selection-swipeable-wrapper {
+  background: #FFFF;
+  box-shadow: 1px 1px 7px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  position: absolute;
+  top: 10%;
+  width: 98%;
+  left: 3px;
+  height: auto;
+  overflow: auto;
+  right: 11px;
+  min-height: 80%;
+  z-index: 10000;
+  max-height: 80%;
+  margin: 7px 0;
+
+  .instruction {
+    font-weight: 600;
+    margin: 11px;
+    font-size: 16px;
+  }
+
+  .close-btn {
+    position: relative;
+    bottom: 0;
+    z-index: 30;
+    width: 90%;
+    background: #00B8D4;
+    color: #FFF;
+    left: 19px;
+    border-radius: 24px;
+    margin: 10px 0;
+  }
+
+  .symptom-item {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 4px;
+
+    .title {
+      font-weight: 900;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .item-detailed-options {
+
+    }
+  }
+
+  .soption-button {
+    border-radius: 32px;
+    height: auto;
+    text-transform: capitalize;
+    margin-right: 3px;
+    margin-bottom: 3px;
+
+    &.selected {
+      background: var(--secondary-color);
+    }
+  }
+}

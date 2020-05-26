@@ -10,6 +10,7 @@ import ButtonOption from './HygeiaActionElements/ButtonOption'
 import RequestDataButtons from './HygeiaActionElements/RequestDataButtons'
 import BodyModel from './HygeiaActionElements/BodyModel'
 import SwipeableList from './HygeiaActionElements/SwipeableList'
+import Selection from './HygeiaActionElements/Selection'
 
 export default function Hygeia(props) {
   const dispatch = useDispatch()
@@ -73,6 +74,11 @@ export default function Hygeia(props) {
         let newProps = { ...props, handleHygeiaButtonOption: props.handleRequestTriggerButtons }
         console.log('request-data-buttons', props)
         return <SwipeableList {...newProps} />
+      }
+      case 'selection':
+      {
+        let newProps = { ...props, afterSymptoms: props.afterSymptoms }
+        return <Selection {...newProps} />
       }
       case 'body-model':
       {

@@ -92,6 +92,7 @@ const ChatMessages = React.forwardRef((props, ref) => {
                     {...message} messageIndex={mi}
                     handleHygeiaButtonOption={handleHygeiaButtonOption}
                     handleRequestTriggerButtons={handleRequestTriggerButtons}
+                    afterSymptoms={props.afterSymptoms}
                   /> : null)
               })
             }
@@ -125,11 +126,3 @@ const ChatMessages = React.forwardRef((props, ref) => {
 })
 
 export default ChatMessages
-{/*<UserForm code={step.stepCode}
-  handleNext={this.ha,ndleNext.bind(this)}
-  inputs={message.userForm.inputs} 
-  formKey={message.userForm.onSuccessAction} 
-  setFormData={this.setFormData.bind(this)}
-  handleRedirectButtons={this.handleRedirectButtons.bind(this)}
-  newChat={this.newChat}
-/>*/}

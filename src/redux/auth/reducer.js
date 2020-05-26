@@ -4,19 +4,18 @@ const initialState = {
   authenticated: false,
   loading: false,
   token_validation: false,
-  auth: null,
   authDomain: '',
-  data: { name: 'Dr. Who' }
+  data: null
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN:
-      return { ...state, authenticated: true, loading: false }
+      return { ...state, data: action.payload, loading: false }
     case FACEBOOK_AUTH:
-      return { ...state, auth: action.payload }
+      return { ...state, data: action.payload }
     case GOOGLE_AUTH:
-      return { ...state, auth: action.payload }
+      return { ...state, data: action.payload }
     default:
       return state;
   }

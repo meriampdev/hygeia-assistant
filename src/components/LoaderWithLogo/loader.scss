@@ -1,7 +1,7 @@
 .loader-logo-wrapper {
   position: absolute;
-  top: 40%;
-  left: 40%;
+  top: 26%;
+  left: 33%;
   width: 30%;
   display: inline-block;
   text-align: center;
@@ -22,11 +22,6 @@
         height: 100%;
         width: 100%;
         object-fit: contain;
-      }
-    }
-    @media only screen and (max-width: 600px) {
-      .loader-logo-wrapper {
-        min-width: 350px;
       }
     }
         
@@ -109,6 +104,22 @@
         transform: rotate(-360deg);
       }
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .loader-logo-wrapper {
+    top: 25%;
+    left: 3%;
+    min-width: 350px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .loader-logo-wrapper {
+    top: 25%;
+    left: 3%;
+    min-width: 350px;
   }
 }
 

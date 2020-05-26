@@ -1,5 +1,5 @@
 import { ADD_TO_QUEUE, SET_CALL_CONNECTOR, GET_QUEUE, ERROR_GET_QUEUE, UPDATE_CALL_STATUS,
-  RMEOVE_FROM_QUEUE } from './types'
+  RMEOVE_FROM_QUEUE, GET_CALL_LIST } from './types'
 import axios from 'axios'
 
 const API = process.env.REACT_APP_CONNECT_API
@@ -14,6 +14,25 @@ export const setCallConnector = (callConnector) => {
   return {
     type: SET_CALL_CONNECTOR,
     payload: callConnector
+  }
+}
+
+export function getList(payload) {
+  const request = axios.get(`${API}/client/call/list`)
+
+  return dispatch => {
+    return request.then((response) => {
+      dispatch({
+        type: GET_CALL_LIST,
+        payload: response.data.list
+      })
+    }).catch((e) => {
+      console.log('e', e.response)
+      dispatch({
+        type: `${GET_CALL_LIST}_ERROR`,
+        error: e.response
+      })
+    })
   }
 }
 
