@@ -265,25 +265,25 @@ export default [
       }
     ]
   },
-  // {
-  //   code: 'modeOfPayment',
-  //   conversation: [
-  //     {
-  //       from: 'hygeia',
-  //       messages: [
-  //         { type: 'message', text: "How would you like to pay?"}, 
-  //         {
-  //           type: 'button-option',
-  //           inputKey: 'modeOfPayment',
-  //           message: "",
-  //           inputPrompt: true,
-  //           inputOptions: [
-  //             { value: 'insurance', label: 'Use my insurance' },
-  //             { value: 'notInsurance', label: 'Continue without insurance' },
-  //           ]
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // },
+  {
+    code: 'modeOfPayment',
+    conversation: [
+      {
+        from: 'hygeia',
+        messages: [
+          { type: 'message', text: "How would you like to pay?"}, 
+          {
+            type: 'button-option',
+            inputKey: 'modeOfPayment',
+            message: "",
+            inputPrompt: true,
+            inputOptions: [
+              { value: 'insurance', label: 'Use my insurance' },
+              { value: 'notInsurance', label: 'Continue without insurance' },
+            ]
+          }
+        ]
+      }
+    ]
+  },
 ]

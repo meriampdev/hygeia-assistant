@@ -6,7 +6,7 @@ export default function CustomHeaderWithFilters(props) {
       {
         props.columns.map((header, i) => {
           let headerStyle = Object.assign({}, header.headerStyle)
-          return <th style={headerStyle} key={`custom-header-${i}`} className={`${header.className} MuiTableCell-root MuiTableCell-head MTableHeader-header-255 MuiTableCell-alignLeft`}>
+          return <th scope="col" style={headerStyle} key={`custom-header-${i}`} className={`${header.className} MuiTableCell-root MuiTableCell-head MTableHeader-header-255 MuiTableCell-alignLeft`}>
             {
               header.fieldType !== 'action' ?
                 <HeaderFilter {...header}

@@ -1,4 +1,5 @@
 @import './theme.scss';
+@import './mobile-responsive.scss';
 
 html, body, div#root {
   // width: min-content;
@@ -36,8 +37,8 @@ a {
 }
 
 .page-content-container {
-  min-height: 100vh;
-  min-width: 100vw
+  // min-height: 100vh;
+  // min-width: 100vw
 }
 
 .fullHeight-center-content {
@@ -57,4 +58,13 @@ a {
 
 .flex-column {
   flex-direction: column;
+}
+
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  background: #FFF;
+}
+.MuiOutlinedInput-notchedOutline {
+  span {
+    display: none !important;
+  }
 }

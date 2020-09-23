@@ -77,13 +77,13 @@ export default function EmployeeList(props) {
       {
         visible ? 
           <Dialog visible={true} handleCancel={() => setVisibility(false)} nativeProps={{ fullScreen: true, className: 'vc-interface-dialog' }} noActionBtns={true} >
-            <WebRTC callData={callData} closeCall={handleStopCall} URL="wss://hygeia-vc-server.herokuapp.com/" />
+            <WebRTC callData={callData} closeCall={handleStopCall} URL={process.env.REACT_APP_VC_SIGNAL_SERVER} />
           </Dialog>
         : null
       }
       {
         viewMore ? 
-          <Dialog handleCancel={() => setViewMore(false)} title="Client Data" visible={true} >
+          <Dialog handleCancel={() => setViewMore(false)} title="Client Data" nativeProps={{ maxWidth: 'sm' }} visible={true} >
             <ViewMore data={callData} />
           </Dialog>
         : null

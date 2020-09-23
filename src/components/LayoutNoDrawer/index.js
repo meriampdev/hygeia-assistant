@@ -32,7 +32,7 @@ export default function Root(props) {
   useEffect(() => {
     if(!initSocketStatus) {
       setInitSocketStatus(true)
-      let URL="wss://hygeia-vc-server.herokuapp.com/"
+      let URL=process.env.REACT_APP_VC_SIGNAL_SERVER
       let socketInstance = new WebSocket(URL)
       initSocket(socketInstance)
     }

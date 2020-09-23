@@ -11,37 +11,24 @@ export default function ViewMore(props) {
   let symptoms = data.symptoms ? data.symptoms.join() : ''
   let stext = symptoms ? symptoms.replace(',',', ') : ''
   return (
-     <Grid>
+    <Grid>
       <Cell size={4}>
-        <div className='data-label'>Name</div>
+        <TextField value={data.patientName} label="Name" inputProps={{readOnly: true}} variant="filled" />
       </Cell>
       <Cell size={4}>
-        <div className='data-label'>Gender</div>
+        <TextField value={data.gender} label="Gender" inputProps={{readOnly: true}} variant="filled" />
       </Cell>
       <Cell size={4}>
-        <div className='data-label'>Age</div>
-      </Cell>
-      <Cell size={4}>
-        <TextField value={data.patientName} inputProps={{readOnly: true}} variant="filled" />
-      </Cell>
-      <Cell size={4}>
-        <TextField value={data.gender} inputProps={{readOnly: true}} variant="filled" />
-      </Cell>
-      <Cell size={4}>
-        <TextField value={data.age} inputProps={{readOnly: true}} variant="filled" />
+        <TextField value={data.age} label="Age" inputProps={{readOnly: true}} variant="filled" />
       </Cell>
       <Cell size={12}>
-        <div className='data-label'>Symptom Group</div>
-      </Cell>
-      <Cell size={12}>
-        <TextField fullWidth value={textgroup} inputProps={{readOnly: true}} variant="filled" />
-      </Cell>
-      <Cell>
-        <div className='data-label'>Selected Symptoms</div>
+        <TextField label="Symptom Group" fullWidth value={textgroup} inputProps={{readOnly: true}} variant="filled" />
       </Cell>
       <Cell size={12} className='symptoms'>
-        <TextField fullWidth value={stext} inputProps={{readOnly: true}} variant="filled" />
+        <TextField label="Symptoms" fullWidth value={stext} multiline rowsMax={6}
+          inputProps={{readOnly: true }} variant="filled" 
+        />
       </Cell>
-     </Grid>
+    </Grid>
   )
 }

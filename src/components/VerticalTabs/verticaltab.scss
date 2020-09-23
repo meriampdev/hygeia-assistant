@@ -1,0 +1,103 @@
+.vertical-tabs {
+  display: flex;
+  flex-direction: row;
+
+  .tabitems {
+    flex: 20% 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    flex: 80% 0;
+    min-height: 60vh;
+    box-shadow: 0px 3px 7px 4px rgba(0,0,0,0.05);
+  }
+
+  section {
+    display: none;
+    padding: 20px 0 0;
+    border-top: unset !important;
+  }
+
+  input.tab-radio {
+    display: none;
+  }
+
+  .verticaltab {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    font-size: 15px;
+    height: 45px;
+    color: #616161;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: unset !important;
+    padding-left: 5px;
+
+    .md-icon {
+      display: none;
+    }
+  }
+
+  div.verticaltab.activeTab {
+    font-weight: bold;
+    // color: var(--secondary-color);
+    background: var(--primary-color);
+    color: #FFF;
+    // border: unset !important;
+    // border-left: 4px solid var(--secondary-color) !important;
+    border-bottom: unset !important;
+    border-top-right-radius: unset !important;
+    border-top-left-radius: unset !important;
+    border-bottom-left-radius: unset !important;
+    box-shadow: -20px 2px 12px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .active-section {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .vertical-tabs {
+    flex-direction: column;
+
+    .tabitems {
+      flex-direction: row;
+      .verticaltab {
+        font-size: 0px;
+        min-width: 40px;
+        .md-icon {
+          display: block;
+        }
+        &.activeTab {
+          border-left: unset !important;
+          border-top: 4px solid var(--secondary-color) !important;
+        }
+      }
+    }
+  }   
+}
+@media screen and (max-width: 400px) {
+  .vertical-tabs {
+    flex-direction: column;
+
+    .tabitems {
+      flex-direction: row;
+      .verticaltab {
+        font-size: 0px;
+        min-width: 40px;
+        .md-icon {
+          display: block;
+        }
+        &.activeTab {
+          border-left: unset !important;
+          border-top: 4px solid var(--secondary-color) !important;
+        }
+      }
+    }
+  }   
+}

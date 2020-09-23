@@ -91,6 +91,13 @@ export default function WebRTC(rtcProps) {
       
       rtcPeerConnectionInstance.addTrack(localMediaStream.getTracks()[0], localMediaStream);
       rtcPeerConnectionInstance.addTrack(localMediaStream.getTracks()[1], localMediaStream);
+      
+      // rtcPeerConnectionInstance.addTransceiver('video', { direction: 'sendonly'}).sender.replaceTrack(localMediaStream.getVideoTracks()[0]);
+      // rtcPeerConnectionInstance.addTransceiver('video', { direction: 'recvonly'});
+
+      // rtcPeerConnectionInstance.addTransceiver('audio', { direction: 'sendonly'}).sender.replaceTrack(localMediaStream.getAudioTracks()[0]);
+      // rtcPeerConnectionInstance.addTransceiver('audio', { direction: 'recvonly'});
+      
       let sessionDescription = await rtcPeerConnectionInstance.createOffer()
       await rtcPeerConnectionInstance.setLocalDescription(sessionDescription)
 

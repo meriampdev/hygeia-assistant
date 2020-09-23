@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import './datatable.scss'
+import './mobile-responsive.scss'
 import React from 'react';
 import MaterialTable from 'material-table';
 import IconButton from '@material-ui/core/IconButton'
@@ -155,7 +156,7 @@ class DataTable extends React.PureComponent {
 
               let arrToString = texts.join().replace(',', ' ')
               let displayText = arrToString ? arrToString : col.defaultText
-              return <div className={col.className}> <span>{displayText}</span> </div>
+              return <div data-title={col.title} className={col.className}> <span>{displayText}</span> </div>
             },
             customFilterAndSearch: (term, rowData) => {
               let texts = []
@@ -244,7 +245,7 @@ class DataTable extends React.PureComponent {
         {
           let colData = { ...col,
             render: (rowData) => {
-              return <div className={col.className}>{this.renderActionButtons(col.buttons, rowData, col)}</div>
+              return <div scope="row" className={col.className}>{this.renderActionButtons(col.buttons, rowData, col)}</div>
             }
           }
           return colData
@@ -273,7 +274,7 @@ class DataTable extends React.PureComponent {
               } catch (e) {
                 colValue = moment() 
               }
-              return <div className={col.className}><TimeInterval value={colValue} /></div>
+              return <div data-title={col.title} className={col.className}><TimeInterval value={colValue} /></div>
             }
           }
           return colData

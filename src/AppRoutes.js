@@ -10,7 +10,7 @@ import LandingPage from './pages/LandingPage'
 import SignUp from './pages/SignUp'
 import Call from './pages/Call'
 import ChatSignup from './pages/Chat/ChatBody/SignUp'
-import LayoutNoDrawer from './components/LayoutNoDrawer'
+import Layout from './components/Layout'
 import SecureRoute from './components/SecureRoute'
 import Provider from './pages/Provider'
 
@@ -29,29 +29,43 @@ export default function AppRoutes() {
           )} />
 
           <Route exact path="/signup" render={(props) => (
-            <ChatSignup />
+            <SignUp />
           )} />
 
           <Route exact path="/call" render={(props) => (
             <Call />
           )} />
-          
-          <Route path="/provider" render={(props) => (
-            <SecureRoute
-              component={
-                <LayoutNoDrawer 
-                  indexRoute='/provider'
-                  indexComponent={<Provider />}
-                  navItems={[{
-                    label: 'Waiting Room', path: '/waitingroom',
-                    to: `/provider/waitingroom`,
-                    exact: true,
-                    icon: 'web',
-                    component: <Provider />
-                  }]}
-                />
-              } />
+
+          <Route exact path="/provider" render={(props) => (
+            <Layout navItems={[
+                {
+                  label: 'Provider', path: '/provider',
+                  to: `/provider`,
+                  exact: true,
+                  icon: 'assignment_ind',
+                  component: <Provider />
+                }
+              ]} 
+            />
           )} />
+          {
+            // <Route path="/provider" render={(props) => (
+            //   <SecureRoute
+            //     component={
+            //       <Layout 
+            //         indexRoute='/provider'
+            //         indexComponent={<Provider />}
+            //         navItems={[{
+            //           label: 'Waiting Room', path: '/waitingroom',
+            //           to: `/provider/waitingroom`,
+            //           exact: true,
+            //           icon: 'web',
+            //           component: <Provider />
+            //         }]}
+            //       />
+            //     } />
+            // )} />
+          }
 
           <Route  path="*" render={(props) => (
             <div>Not Found</div>
